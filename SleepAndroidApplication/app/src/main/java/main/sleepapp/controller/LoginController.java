@@ -1,4 +1,4 @@
-package main.sleepapp;
+package main.sleepapp.controller;
 
 
 import android.content.Intent;
@@ -16,22 +16,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import main.sleepapp.R;
+
 
 /**
  * A login screen that offers login via email/password.
  */
 public class LoginController extends AppCompatActivity {
 
-
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
-    // UI references.
     private EditText mUserID,mPassword;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,15 +49,6 @@ public class LoginController extends AppCompatActivity {
             }
         });
 
-        Button btnRegister = (Button) findViewById(R.id.btn_register);
-        btnRegister.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent registerIntent = new Intent(LoginController.this, RegisterController.class);
-                LoginController.this.startActivity(registerIntent);
-            }
 
-
-        });
     }
 }
