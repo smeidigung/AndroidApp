@@ -15,9 +15,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainController" />
-        <activity
-            android:name=".LoginController"
-            android:label="@string/title_activity_login_controller"></activity>
+        <activity android:name=".RegisterController" />
+        <activity android:name=".LoginController">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
