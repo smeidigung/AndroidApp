@@ -43,12 +43,23 @@ public class LoginController extends AppCompatActivity {
                 String Pwd = mPassword.getText().toString();
                 String type = "login";
 
-/*                DatabaseController databaseController = new DatabaseController(LoginController.this);
-                databaseController.execute(type, UserName, Pwd);*/
+                DatabaseController databaseController = new DatabaseController(LoginController.this);
+                databaseController.execute(type, UserName, Pwd);
 
             }
         });
-
-
+        Button goToRegister = (Button) findViewById(R.id.btn_gotoregister);
+        goToRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                handleGoToRegister();
+            }
+        });
     }
+    public void handleGoToRegister() {
+        setContentView(R.layout.registerview);
+    }
+
 }
+
+

@@ -225,10 +225,12 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
+        String registerSubString = "Insert successful: Student_id = ";
+
         if (delegate != null) {
             delegate.processFinish(result);
         }
-        String registerSubString = "Insert successful: Student_id = ";
+
         if (result.equalsIgnoreCase("login success")) {
             Intent Intent = new Intent(context, MainController.class);
             context.startActivity(Intent);

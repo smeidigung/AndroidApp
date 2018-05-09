@@ -12,4 +12,5 @@ public class MainController extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainview);
     }
+
 }
