@@ -7,6 +7,7 @@
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="UserName_hint">Brugernavn</string>
+    <string name="Register_Name_hint">Navn</string>
     <string name="prompt_password">Kodeord</string>
     <string name="action_sign_in">Log ind</string>
     <string name="action_register">Registrer</string>

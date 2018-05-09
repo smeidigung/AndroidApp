@@ -65,6 +65,7 @@ tools:context=".controller.MainController">
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_rowWeight="1"
+            app:cardBackgroundColor="@color/colorPrimaryDark"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp">
 
@@ -102,6 +103,7 @@ tools:context=".controller.MainController">
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_rowWeight="1"
+            app:cardBackgroundColor="@color/colorPrimaryDark"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp">
 
@@ -142,6 +144,7 @@ tools:context=".controller.MainController">
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_rowWeight="1"
+            app:cardBackgroundColor="@color/colorPrimaryDark"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp">
 
@@ -179,6 +182,7 @@ tools:context=".controller.MainController">
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_rowWeight="1"
+            app:cardBackgroundColor="@color/colorPrimaryDark"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp">
 
