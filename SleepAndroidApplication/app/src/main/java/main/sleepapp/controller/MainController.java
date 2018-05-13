@@ -36,7 +36,6 @@ public class MainController extends AppCompatActivity {
     private Time sleep_time;
     private Time awoke_time;
 
-    //runs without a timer by reposting this handler at the end of the runnable
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
 
@@ -77,25 +76,23 @@ public class MainController extends AppCompatActivity {
                     timerHandler.removeCallbacks(timerRunnable);
 
                     awoke_date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-                    awoke_time = new java.sql.Time(Calendar.getInstance().getTime().getTime());
 
-                    SimpleDateFormat sdfDate = new SimpleDateFormat("yyyyMMdd");
-                    SimpleDateFormat sdfTime = new SimpleDateFormat("HHmmss");
+                    SimpleDateFormat sdfDate = new SimpleDateFormat("yyyyMMddHHmmss");
 
-                    String sleep_dateTime = sdfDate.format(sleep_date)+sdfTime.format(sleep_time);
-                    String awoke_dateTime = sdfDate.format(awoke_date)+sdfTime.format(awoke_time);
+                    String sleep_dateTime = sdfDate.format(sleep_date);
+                    String awoke_dateTime = sdfDate.format(awoke_date);
+
                     String type = "timer";
                     DatabaseController dbController = new DatabaseController(MainController.this);
-
                     dbController.execute(type,sleep_dateTime,awoke_dateTime);
 
                     b.setText("start");
                 } else {
                     startTime = System.currentTimeMillis();
                     sleep_date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-                    sleep_time = new java.sql.Time(Calendar.getInstance().getTime().getTime());
                     timerHandler.postDelayed(timerRunnable, 0);
                     b.setText("stop");
+                    //new AssessmentController(); //TODO: ADD THIS BACK IN
                 }
             }
         });
@@ -126,10 +123,10 @@ public class MainController extends AppCompatActivity {
                         handleGoToPreviousSleep();
                     }
                     else if(finalI == 2){
-
+                        handleAssessment(); // TODO: SKAL IKKE VÆRE HER. SKAL BARE KØRE AF SIG SELV. Bruges kun til debug lige pt.
                     }
                     else {
-
+                        handleGoToConcent();
                     }
                 }
             })  ;
@@ -141,10 +138,20 @@ public class MainController extends AppCompatActivity {
         intent.putExtra("type","sleephabits");
         startActivity(intent);
     }
+
+    public void handleGoToConcent () {
+        Intent intent = new Intent(this, ConsentController.class);
+        startActivity(intent);
+    }
+
     public void handleGoToPreviousSleep () {
         Intent intent = new Intent(this, SleepController.class);
         intent.putExtra("type","previoussleep");
         intent.putExtra("studentmodel", studentModel);
         startActivity(intent);
+    }
+
+    public void handleAssessment(){
+        new AssessmentController(this);
     }
 }

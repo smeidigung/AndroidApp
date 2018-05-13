@@ -31,9 +31,16 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
         this.delegate = delegate;
     }
 
+    DatabaseController (AsyncResponse delegate) {
+        this.delegate = delegate;
+    }
     DatabaseController(Context ctx) {
         context = ctx;
+    } // TODO: Fjern alle controllere hvor denne bliver brugt.
+
+    DatabaseController() {
     }
+
 
     @Override
     protected String doInBackground(String... params) {
@@ -186,6 +193,7 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
         } else if (type.equals("assessment")) {
             try {
                 String student_id = params[1];
+                String earliere_dateTime = params[2];
                 URL url = new URL(assessment_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
@@ -193,7 +201,8 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
                 httpURLConnection.setDoInput(true);
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                String post_data = URLEncoder.encode("student_id", "UTF-8") + "=" + URLEncoder.encode(student_id, "UTF-8");
+                String post_data = URLEncoder.encode("student_id", "UTF-8") + "=" + URLEncoder.encode(student_id, "UTF-8") + "&" +
+                        URLEncoder.encode("earliere_dateTime", "UTF-8") + "=" + URLEncoder.encode(earliere_dateTime, "UTF-8");
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
