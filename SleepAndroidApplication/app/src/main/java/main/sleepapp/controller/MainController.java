@@ -42,7 +42,7 @@ public class MainController extends AppCompatActivity {
                 public void onClick(View v) {
 
                     if (finalI == 0){
-
+                        handleGoToSleepHabits();
                     }
                     else if(finalI == 1){
 
@@ -59,6 +59,8 @@ public class MainController extends AppCompatActivity {
     }
 
     public void handleGoToSleepHabits () {
-        
+        Intent intent = new Intent(this, SleepController.class);
+        intent.putExtra("type","sleephabits");
+        startActivity(intent);
     }
 }
