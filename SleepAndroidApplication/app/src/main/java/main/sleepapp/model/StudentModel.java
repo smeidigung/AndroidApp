@@ -1,10 +1,44 @@
 package main.sleepapp.model;
 
-public class StudentModel {
+import android.os.Parcel;
+import android.os.Parcelable;
 
-    public static String student_id;
+public class StudentModel implements Parcelable {
 
-    public static void StudentModel () {
-        student_id = null;
+    private String student_id;
+
+    public StudentModel () {
+    }
+
+    public StudentModel (Parcel in) {
+        this.student_id = in.readString();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(student_id);
+    }
+
+    public static final Parcelable.Creator<StudentModel> CREATOR = new Parcelable.Creator<StudentModel>(){
+        public StudentModel createFromParcel(Parcel in) {
+            return new StudentModel(in);
+        }
+
+        public StudentModel[] newArray(int size) {
+            return new StudentModel[size];
+        }
+    };
+
+    public void setStudent_id (String string) {
+        this.student_id = string;
+    }
+
+    public String getStudent_id (){
+        return(this.student_id);
     }
 }

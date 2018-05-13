@@ -24,7 +24,7 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
     public String result;
     public AsyncResponse delegate = null;
     Context context;
-    private AlertDialog alertDialog;
+
 
     DatabaseController(Context ctx, AsyncResponse delegate) {
         context = ctx;
@@ -43,7 +43,6 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
         String timer_url = "http://212.10.146.182:8080/timer.php";
         String consent_url = "http://212.10.146.182:8080/consent.php";
         String assessment_url = "http://212.10.146.182:8080/assessment.php";
-        System.out.println(type);
         if (type.equals("login")) {
             try {
                 String student_id = params[1];
@@ -71,7 +70,6 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
-                StudentModel.student_id = student_id;
                 return result;
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -82,6 +80,8 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
         } else if (type.equals("register")) {
             try {
                 String student_pass = params[1];
+                String student_firstname = params[2];
+                String student_surname = params[3];
                 URL url = new URL(register_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
@@ -90,7 +90,9 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
                 String post_data =
-                        URLEncoder.encode("student_pass", "UTF-8") + "=" + URLEncoder.encode(student_pass, "UTF-8");
+                        URLEncoder.encode("student_pass", "UTF-8") + "=" + URLEncoder.encode(student_pass, "UTF-8") + "&"
+                        + URLEncoder.encode("student_firstname", "UTF-8") + "=" + URLEncoder.encode(student_firstname, "UTF-8") + "&"
+                                + URLEncoder.encode("student_surname", "UTF-8") + "=" + URLEncoder.encode(student_surname, "UTF-8");
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -124,7 +126,7 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
                 String post_data =
-                        URLEncoder.encode("student_id", "UTF-8") + "=" + URLEncoder.encode(StudentModel.student_id, "UTF-8") + "&" +
+                        URLEncoder.encode("student_id", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8") + "&" + //TODO: <-- fix the student_id thing
                                 URLEncoder.encode("sleep_time", "UTF-8") + "=" + URLEncoder.encode(sleep_time, "UTF-8") + "&" +
                                 URLEncoder.encode("awoke_time", "UTF-8") + "=" + URLEncoder.encode(awoke_time, "UTF-8");
                 bufferedWriter.write(post_data);
@@ -159,7 +161,7 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
                 String post_data =
-                        URLEncoder.encode("student_id", "UTF-8") + "=" + URLEncoder.encode(StudentModel.student_id, "UTF-8") + "&" +
+                        URLEncoder.encode("student_id", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8") + "&" + //TODO: <-- fix the student_id thing
                                 URLEncoder.encode("student_consent", "UTF-8") + "=" + URLEncoder.encode(student_consent, "UTF-8");
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
@@ -219,29 +221,17 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPreExecute() {
-        alertDialog = new AlertDialog.Builder(context).create();
-        alertDialog.setTitle("Login Status");
+
     }
 
     @Override
     protected void onPostExecute(String result) {
-        String registerSubString = "Insert successful: Student_id = ";
-
+        if (result == null) {
+            System.out.println("GOT NO RESPONSE FROM SERVER");
+            return;
+        }
         if (delegate != null) {
             delegate.processFinish(result);
-        }
-
-        if (result.equalsIgnoreCase("login success")) {
-            Intent Intent = new Intent(context, MainController.class);
-            context.startActivity(Intent);
-        }
-        if (result.startsWith("Insert successful: Student_id")) {
-            alertDialog.setMessage("Brugernavn: " + result.replace(registerSubString, ""));
-            Intent Intent = new Intent(context, LoginController.class);
-            context.startActivity(Intent);
-        }
-        if (result.startsWith("Data: ")) {
-
         }
     }
 
