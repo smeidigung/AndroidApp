@@ -72,18 +72,10 @@ public class LoginController extends AppCompatActivity implements DatabaseContro
         String UserName = mUserID.getText().toString();
         String Pwd = mPassword.getText().toString();
         String type = "login";
-        // TODO: TILFØJ DET HER IGEN
 
-        //DatabaseController databaseController = new DatabaseController(LoginController.this,this);
-        //databaseController.execute(type, UserName, Pwd);
 
-       // TODO: FJERN DET UNDER HER
-
-        Intent intent = new Intent(this,MainController.class);
-        this.studentModel.setStudent_id(mUserID.getText().toString());
-        intent.putExtra("studentModel",this.studentModel);
-        this.startActivity(intent);
-
+        DatabaseController databaseController = new DatabaseController(LoginController.this,this);
+        databaseController.execute(type, UserName, Pwd);
 
     }
 

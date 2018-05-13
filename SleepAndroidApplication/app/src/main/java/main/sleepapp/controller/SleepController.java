@@ -10,19 +10,26 @@ import android.view.View;
 import java.sql.SQLOutput;
 
 import main.sleepapp.R;
+import main.sleepapp.model.StudentModel;
 import main.sleepapp.util.DatePickerFragment;
 
 public class SleepController extends AppCompatActivity implements DatabaseController.AsyncResponse {
 
+    StudentModel studentModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        studentModel = getIntent().getParcelableExtra("studentModel");
 
         String string = getIntent().getStringExtra("type");
 
         if (string.equals("sleephabits")) {
             setContentView(R.layout.sleephabitsview);
-            System.out.println("HERE");
+        }
+        if (string.equals("previoussleep")) {
+            setContentView(R.layout.previoussleepview);
+            fillView();
         }
 
     }
@@ -38,4 +45,13 @@ public class SleepController extends AppCompatActivity implements DatabaseContro
     public void getDate(int year, int month, int day) {
 
     }
+     public void fillView () {
+        String type = "previoussleep";
+         DatabaseController databaseController = new DatabaseController(SleepController.this,this);
+         databaseController.execute(type);
+     }
+
+     public void setStudentModel() {
+
+     }
 }
