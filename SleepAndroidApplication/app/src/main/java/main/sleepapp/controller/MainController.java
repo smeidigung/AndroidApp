@@ -1,5 +1,6 @@
 package main.sleepapp.controller;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -23,9 +24,9 @@ import main.sleepapp.model.SleepModel;
 import main.sleepapp.model.StudentModel;
 import main.sleepapp.model.UserModel;
 
-public class MainController extends AppCompatActivity {
+public class MainController extends AppCompatActivity{
 
-    StudentModel studentModel;
+    public StudentModel studentModel;
     GridLayout mainGrid;
 
     TextView timerTextView;
@@ -33,6 +34,8 @@ public class MainController extends AppCompatActivity {
 
     private Date sleep_date;
     private Date awoke_date;
+
+    Context context;
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -56,6 +59,8 @@ public class MainController extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainview);
         studentModel = getIntent().getParcelableExtra("studentModel");
+        this.context = this;
+
 
         mainGrid = (GridLayout) findViewById(R.id.mainGrid);
         setSingleEvent(mainGrid);
@@ -83,13 +88,17 @@ public class MainController extends AppCompatActivity {
                     SleepModel sleepModel = new SleepModel(studentModel.getStudent_id(),sleep_dateTime,awoke_dateTime);
                     sleepModel.updateModel();
 
+                    SleepController sleepController = new SleepController();
+                    sleepController.setStudentModel(studentModel);
+                    sleepController.handleGoToAssessment(context);
+
                     b.setText("start");
                 } else {
                     startTime = System.currentTimeMillis();
                     sleep_date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
                     timerHandler.postDelayed(timerRunnable, 0);
                     b.setText("stop");
-                    //new AssessmentController(); //TODO: ADD THIS BACK IN
+
                 }
             }
         });
@@ -138,6 +147,7 @@ public class MainController extends AppCompatActivity {
 
     public void handleGoToConcent () {
         Intent intent = new Intent(this, ConsentController.class);
+        intent.putExtra("studentModel",studentModel);
         startActivity(intent);
     }
 
@@ -148,13 +158,18 @@ public class MainController extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void handleAssessment(){ //TODO: SKAL IKKE VÆRE HER.
-        new AssessmentController(this);
+    public void handleGoToMeeting() {
+        if(new MeetingModel().checkModel(studentModel)) {
+            Intent intent = new Intent(this, MeetingController.class);
+            intent.putExtra("studentModel",studentModel);
+            intent.putExtra("hasMeeting",true);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, MeetingController.class);
+            intent.putExtra("studentModel",studentModel);
+            intent.putExtra("hasMeeting",false);
+            startActivity(intent);
+        }
     }
 
-    public void handleGoToMeeting() {
-        Intent intent = new Intent(this, MeetingController.class);
-        intent.putExtra("studentID",studentModel.getStudent_id());
-        startActivity(intent);
-    }
 }

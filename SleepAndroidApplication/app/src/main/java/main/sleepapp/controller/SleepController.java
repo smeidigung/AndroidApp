@@ -1,13 +1,11 @@
 package main.sleepapp.controller;
 
-import android.app.Activity;
 import android.app.DialogFragment;
-import android.app.FragmentManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import java.sql.SQLOutput;
 
 import main.sleepapp.R;
 import main.sleepapp.model.StudentModel;
@@ -29,7 +27,7 @@ public class SleepController extends AppCompatActivity implements DatabaseContro
         }
         if (string.equals("previoussleep")) {
             setContentView(R.layout.previoussleepview);
-            fillView();
+            //fillView();
         }
 
     }
@@ -37,6 +35,10 @@ public class SleepController extends AppCompatActivity implements DatabaseContro
     public void showDatePickerDialog(View v) {
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getFragmentManager(),"dataPicker");
+    }
+
+    public void handleGoToAssessment(Context context){
+        new AssessmentController(studentModel,context);
     }
     public void processFinish(String string) {
 
@@ -51,7 +53,7 @@ public class SleepController extends AppCompatActivity implements DatabaseContro
          databaseController.execute(type,studentModel.getStudent_id());
      }
 
-     public void setStudentModel() {
-
+     public void setStudentModel(StudentModel studentModel) {
+        this.studentModel = studentModel;
      }
 }

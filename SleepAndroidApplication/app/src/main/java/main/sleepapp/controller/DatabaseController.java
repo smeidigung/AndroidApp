@@ -51,6 +51,7 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
         String consent_url = "http://212.10.146.182:8080/consent.php";
         String assessment_url = "http://212.10.146.182:8080/assessment.php";
         String meeting_url = "http://212.10.146.182:8080/meeting.php";
+        String checkMeeting_url = "http://212.10.146.182:8080/loadMeeting.php";
         if (type.equals("login")) {
             try {
                 String student_id = params[1];
@@ -295,10 +296,10 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
                 e.printStackTrace();
             }
 
-        } else if (type.equals("checkMeeting")) {
+        } else if (type.equals("loadMeeting")) {
             try {
                 String student_id = params[1];
-                URL url = new URL(meeting_url); //TODO: Tilføj rigtig URL.
+                URL url = new URL(checkMeeting_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);

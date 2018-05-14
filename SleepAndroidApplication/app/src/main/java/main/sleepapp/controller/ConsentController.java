@@ -7,42 +7,47 @@ import android.view.View;
 import android.widget.Button;
 
 import main.sleepapp.R;
+import main.sleepapp.model.StudentModel;
 
 
 public class ConsentController extends AppCompatActivity {
 
-    private String consent;
+    private StudentModel studentModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.consentview);
+
+        studentModel = getIntent().getParcelableExtra("studentModel");
+
         final Button btnAccept = (Button) findViewById(R.id.acceptButton);
         final Button btnReject = (Button) findViewById(R.id.rejectButton);
 
         btnReject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                consent = "0";
-                String type = "consent";
-                DatabaseController dbController = new DatabaseController(ConsentController.this);
-                dbController.execute(type, consent);
-                Intent intent = new Intent(ConsentController.this, MainController.class);
-                ConsentController.this.startActivity(intent);
+                setConcent("0");
+
             }
         });
 
         btnAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                consent = "1";
-                String type = "consent";
-                DatabaseController dbController = new DatabaseController(ConsentController.this);
-                dbController.execute(type, consent);
-                Intent intent = new Intent(ConsentController.this, MainController.class);
-                ConsentController.this.startActivity(intent);
+                setConcent("1");
             }
         });
+
+
+    }
+
+    public void setConcent(String consent){
+        String type = "consent";
+        studentModel.updateModel(type,consent);
+        Intent intent = new Intent(ConsentController.this, MainController.class);
+        intent.putExtra("studentModel",studentModel);
+        ConsentController.this.startActivity(intent);
 
     }
 }

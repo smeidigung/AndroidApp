@@ -1,11 +1,14 @@
 package main.sleepapp.model;
 
+import android.content.Intent;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 
+import main.sleepapp.controller.ConsentController;
 import main.sleepapp.controller.DatabaseController;
 import main.sleepapp.controller.LoginController;
+import main.sleepapp.controller.MainController;
 
 public class StudentModel implements Parcelable {
 
@@ -59,5 +62,18 @@ public class StudentModel implements Parcelable {
         String type = "login";
         DatabaseController databaseController = new DatabaseController(controller);
         databaseController.execute(type, getStudent_id(), getPassword());
+    }
+
+    public void loadModel(){
+
+    }
+
+    public void updateModel(String type, String... params){
+
+        if (type.equals("consent")) {
+            String consent = params[0];
+            DatabaseController dbController = new DatabaseController();
+            dbController.execute(type, consent);
+        }
     }
 }
