@@ -63,7 +63,7 @@ public class AssessmentController{
     }
 
     public void alertStudent() {
-        if (!new MeetingModel().checkModel(studentModel)) {
+        if (!(new MeetingModel().checkModel(studentModel))) {
 
             final AlertDialog.Builder builder;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -78,7 +78,7 @@ public class AssessmentController{
 
                             if(!new MeetingModel().checkModel(studentModel)) {
                                 Intent intent = new Intent(context, MeetingController.class);
-                                intent.putExtra("studentID",studentModel.getStudent_id());
+                                intent.putExtra("studentModel",studentModel);
                                 context.startActivity(intent);
                             }
 
