@@ -16,7 +16,7 @@ import android.widget.EditText;
 import main.sleepapp.R;
 import main.sleepapp.model.StudentModel;
 
-public class LoginController extends AppCompatActivity implements DatabaseController.AsyncResponse {
+public class LoginController extends AppCompatActivity {
 
     private EditText mUserID,mPassword,rPassword,rUserName;
     private StudentModel studentModel;
@@ -61,18 +61,36 @@ public class LoginController extends AppCompatActivity implements DatabaseContro
             firstname = name;
             surname = "ukendt";
         }
+        studentModel = new StudentModel();
+        String string = studentModel.updateModel("register",password,firstname,surname);
 
-        String type = "register";
+        if (string.startsWith("Insert successful: Student_id")) {
+            String registerSubString = "Insert successful: Student_id = ";
 
-        DatabaseController databaseController = new DatabaseController(LoginController.this,this);
-        databaseController.execute(type, password, firstname, surname);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder .setMessage("Brugernavn: " + string.replace(registerSubString, ""))
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            handleGoToLogin();
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
     }
 
     public void handleLogin(){
         studentModel.setStudent_id(mUserID.getText().toString());
         studentModel.setPassword(mPassword.getText().toString());
+        String string = studentModel.checkModel();
 
-        studentModel.checkModel(this);
+        if (string.equalsIgnoreCase("login success")) {
+            Intent intent = new Intent(this,MainController.class);
+            this.studentModel.setStudent_id(mUserID.getText().toString());
+            intent.putExtra("studentModel",this.studentModel);
+            this.startActivity(intent);
+        }
     }
 
     public void handleGoToRegister() {
@@ -91,29 +109,6 @@ public class LoginController extends AppCompatActivity implements DatabaseContro
     public void handleGoToLogin () {
         Intent Intent = new Intent(this, LoginController.class);
         startActivity(Intent);
-    }
-
-    public void processFinish(String string) {
-        if (string.equalsIgnoreCase("login success")) {
-            Intent intent = new Intent(this,MainController.class);
-            this.studentModel.setStudent_id(mUserID.getText().toString());
-            intent.putExtra("studentModel",this.studentModel);
-            this.startActivity(intent);
-            }
-        if (string.startsWith("Insert successful: Student_id")) {
-            String registerSubString = "Insert successful: Student_id = ";
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder .setMessage("Brugernavn: " + string.replace(registerSubString, ""))
-                    .setCancelable(false)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            handleGoToLogin();
-                        }
-                    });
-            AlertDialog alert = builder.create();
-            alert.show();
-        }
     }
 
 

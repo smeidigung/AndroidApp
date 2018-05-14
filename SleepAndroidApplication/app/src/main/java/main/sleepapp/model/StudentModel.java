@@ -1,19 +1,18 @@
 package main.sleepapp.model;
 
-import android.content.Intent;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
 
-import main.sleepapp.controller.ConsentController;
+import java.util.concurrent.ExecutionException;
+
 import main.sleepapp.controller.DatabaseController;
 import main.sleepapp.controller.LoginController;
-import main.sleepapp.controller.MainController;
 
 public class StudentModel implements Parcelable {
 
     private String student_id;
     private String password;
+    private boolean consent;
 
     public StudentModel () {
     }
@@ -58,22 +57,60 @@ public class StudentModel implements Parcelable {
         this.password = password;
     }
 
-    public void checkModel(DatabaseController.AsyncResponse controller){
+    public String checkModel(){
         String type = "login";
-        DatabaseController databaseController = new DatabaseController(controller);
-        databaseController.execute(type, getStudent_id(), getPassword());
+        DatabaseController databaseController = new DatabaseController();
+
+        try {
+            return databaseController.execute(type, getStudent_id(), getPassword()).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    public void loadModel(){
+    public String updateModel(String... params){
 
+        String type = params[0];
+        if(type.equals("register")) {
+            String password = params[1];
+            String firstname = params[2];
+            String surname = params[3];
+
+            DatabaseController databaseController = new DatabaseController();
+            try {
+                return databaseController.execute(type, password, firstname, surname).get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
     }
 
-    public void updateModel(String type, String... params){
+    public void updateModel(String type, Boolean consent){
 
         if (type.equals("consent")) {
-            String consent = params[0];
+            this.setConsent(consent);
+            String str;
+            if(consent) {
+                str = "1";
+            } else {
+                str = "0";
+            }
             DatabaseController dbController = new DatabaseController();
-            dbController.execute(type, consent);
+            dbController.execute(type, str);
         }
+    }
+
+    public boolean isConsent() {
+        return consent;
+    }
+
+    public void setConsent(boolean consent) {
+        this.consent = consent;
     }
 }

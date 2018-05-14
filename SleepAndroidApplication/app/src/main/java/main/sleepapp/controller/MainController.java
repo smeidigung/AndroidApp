@@ -132,7 +132,7 @@ public class MainController extends AppCompatActivity{
                         handleGoToMeeting();
                     }
                     else {
-                        handleGoToConcent();
+                        handleGoToConsent();
                     }
                 }
             })  ;
@@ -145,7 +145,7 @@ public class MainController extends AppCompatActivity{
         startActivity(intent);
     }
 
-    public void handleGoToConcent () {
+    public void handleGoToConsent () {
         Intent intent = new Intent(this, ConsentController.class);
         intent.putExtra("studentModel",studentModel);
         startActivity(intent);

@@ -27,27 +27,35 @@ public class ConsentController extends AppCompatActivity {
         btnReject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setConcent("0");
-
+                handleReject();
             }
         });
 
         btnAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setConcent("1");
+                handleAccept();
             }
         });
 
 
     }
 
-    public void setConcent(String consent){
+    private void handleReject() {
         String type = "consent";
-        studentModel.updateModel(type,consent);
+        studentModel.updateModel(type,false);
         Intent intent = new Intent(ConsentController.this, MainController.class);
         intent.putExtra("studentModel",studentModel);
         ConsentController.this.startActivity(intent);
-
     }
+
+    private void handleAccept(){
+        String type = "consent";
+        studentModel.updateModel(type,true);
+        Intent intent = new Intent(ConsentController.this, MainController.class);
+        intent.putExtra("studentModel",studentModel);
+        ConsentController.this.startActivity(intent);
+    }
+
+
 }

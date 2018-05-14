@@ -77,8 +77,9 @@ public class MeetingModel{
 
          return false;
     }
-    public void loadModel(StudentModel studentModel){
+    public void loadModel(StudentModel studentModel,UserModel userModel){
         setParticipatingStudent(studentModel);
+        setParticipatingCoordinator(userModel); //TODO: Skal laves om så den selv henter den userModel hvis userID der er i databasen i den givende meeting tabel.
         String type = "loadMeeting";
         DatabaseController dbController = new DatabaseController();
         try {
@@ -100,5 +101,13 @@ public class MeetingModel{
         } catch (InterruptedException e) {
 
         }
+    }
+
+    public void updateModel(String... params){
+        String type = params[0];
+        String currentDate = params[1];
+        String studentID = params[2];
+        DatabaseController databaseController = new DatabaseController();
+        databaseController.execute(type,currentDate,studentID,"0","Ukendt");
     }
 }

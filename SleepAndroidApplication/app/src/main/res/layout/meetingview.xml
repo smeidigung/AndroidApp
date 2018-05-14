@@ -17,7 +17,7 @@
 
             <TextView
                 android:id="@+id/textDato"
-                android:layout_width="150dp"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
@@ -26,11 +26,18 @@
 
             <TextView
                 android:id="@+id/textStatus"
-                android:layout_width="150dp"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginEnd="15dp"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/textHC"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
                 android:text="TextView" />
         </RelativeLayout>
 

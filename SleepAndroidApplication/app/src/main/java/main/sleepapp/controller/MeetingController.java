@@ -14,17 +14,15 @@ import java.util.TimeZone;
 import main.sleepapp.R;
 import main.sleepapp.model.MeetingModel;
 import main.sleepapp.model.StudentModel;
+import main.sleepapp.model.UserModel;
 
 public class MeetingController extends AppCompatActivity{
 
     private MeetingModel meetingModel;
-    private String userID;
+    private UserModel userModel;
     private StudentModel studentModel;
     private String type = "meeting";
     private boolean hasMeeting;
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
 
 
     @Override
@@ -34,42 +32,42 @@ public class MeetingController extends AppCompatActivity{
         hasMeeting = getIntent().getBooleanExtra("hasMeeting",hasMeeting);
 
         if (hasMeeting){
-            handleMeetingView();
+            showMeeting();
         } else {
-            handleNoMeetingView();
+            setContentView(R.layout.acceptmeetingview);
+            Button acceptButton = (Button) findViewById(R.id.acceptButton);
+            Button rejectButton = (Button) findViewById(R.id.rejectButton);
+            acceptButton.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    handleAccept();
+                }
+            });
+            rejectButton.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    handleReject();
+                }
+            });
         }
 
 
     }
 
-    public void handleNoMeetingView(){
-        setContentView(R.layout.acceptmeetingview);
-        Button acceptButton = (Button) findViewById(R.id.acceptButton);
-        Button rejectButton = (Button) findViewById(R.id.rejectButton);
-        acceptButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                handleAccept();
-            }
-        });
-        rejectButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                handleReject();
-            }
-        });
-    }
-    public void handleMeetingView(){
+    public void showMeeting(){
         setContentView(R.layout.meetingview);
-        MeetingModel meetingModel = new MeetingModel();
-        meetingModel.loadModel(studentModel);
+        meetingModel = new MeetingModel();
+        userModel = new UserModel();
+        meetingModel.loadModel(studentModel,userModel);
         SimpleDateFormat sdfDate = new SimpleDateFormat("yyyyMMddHHmmss");
 
         TextView textDato = (TextView) findViewById(R.id.textDato);
         TextView textStatus = (TextView) findViewById(R.id.textStatus);
+        TextView textHC = (TextView) findViewById(R.id.textHC);
         textDato.setText(sdfDate.format(meetingModel.getMeetingTime()));
+        textHC.setText(meetingModel.getParticipatingCoordinator().getName());
         textStatus.setText("Venter på svar");
     }
 
@@ -79,8 +77,8 @@ public class MeetingController extends AppCompatActivity{
         sdfDate.setTimeZone(TimeZone.getTimeZone("GMT+2"));
         String currentDate = sdfDate.format(new java.sql.Date(Calendar.getInstance().getTime().getTime()));
 
-        DatabaseController databaseController = new DatabaseController();
-        databaseController.execute(type,currentDate,studentModel.getStudent_id(),"0","Ukendt");
+        meetingModel.updateModel(type,currentDate,studentModel.getStudent_id());
+
         finish();
     }
 

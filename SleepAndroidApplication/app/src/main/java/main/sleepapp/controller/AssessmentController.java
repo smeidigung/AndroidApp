@@ -27,14 +27,36 @@ public class AssessmentController{
     private String result;
     private Context context;
     private StudentModel studentModel;
+    private MeetingModel meetingModel;
+    private SleepModelList sleepModelList;
 
     public AssessmentController(StudentModel studentModel, Context context) {
         this.context = context;
         this.studentModel = studentModel;
-        handleData(new SleepModelList(studentModel).sleepModelList);
+        this.sleepModelList = new SleepModelList(studentModel);
+        if(checkConcent()) {
+            thresholdNotifier(sleepModelList.sleepModelList);
+        } else {
+            goToConsent();
+        }
     }
 
-    private void handleData(List<SleepModel> sleepModelList) {
+    private void goToConsent() {
+        Intent intent = new Intent(context, ConsentController.class);
+        intent.putExtra("studentModel",studentModel);
+        context.startActivity(intent);
+    }
+
+    private boolean checkConcent() {
+        if(this.studentModel.isConsent()) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    private void thresholdNotifier(List<SleepModel> sleepModelList) {
         ArrayList<Date> sleepTime = new ArrayList<>();
         ArrayList<Date> awokeTime = new ArrayList<>();
         ArrayList<Long> diffTime = new ArrayList<>();
@@ -62,7 +84,8 @@ public class AssessmentController{
 
     }
 
-    public void alertStudent() {
+    private void alertStudent() {
+        this.meetingModel = new MeetingModel();
         if (!(new MeetingModel().checkModel(studentModel))) {
 
             final AlertDialog.Builder builder;
@@ -76,7 +99,7 @@ public class AssessmentController{
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
 
-                            if(!new MeetingModel().checkModel(studentModel)) {
+                            if(!meetingModel.checkModel(studentModel)) {
                                 Intent intent = new Intent(context, MeetingController.class);
                                 intent.putExtra("studentModel",studentModel);
                                 context.startActivity(intent);
