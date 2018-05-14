@@ -16,7 +16,7 @@
 
         <EditText
             android:id="@+id/RegisterName"
-            android:layout_width="290dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
@@ -33,7 +33,7 @@
 
         <EditText
             android:id="@+id/RegisterPassword"
-            android:layout_width="297dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/prompt_password"
             android:imeActionId="6"

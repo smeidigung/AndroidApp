@@ -16,7 +16,7 @@ public class ConsentController extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.concentview);
+        setContentView(R.layout.consentview);
         final Button btnAccept = (Button) findViewById(R.id.acceptButton);
         final Button btnReject = (Button) findViewById(R.id.rejectButton);
 

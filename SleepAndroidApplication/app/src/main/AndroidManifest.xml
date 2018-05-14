@@ -14,6 +14,7 @@
         <activity android:name=".controller.MainController" />
         <activity android:name=".controller.SleepController" />
         <activity android:name=".controller.ConsentController" />
+        <activity android:name=".controller.MeetingController" />
         <activity android:name=".controller.LoginController">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

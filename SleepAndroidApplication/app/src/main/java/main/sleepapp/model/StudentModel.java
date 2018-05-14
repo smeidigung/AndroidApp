@@ -2,10 +2,15 @@ package main.sleepapp.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
+
+import main.sleepapp.controller.DatabaseController;
+import main.sleepapp.controller.LoginController;
 
 public class StudentModel implements Parcelable {
 
     private String student_id;
+    private String password;
 
     public StudentModel () {
     }
@@ -40,5 +45,19 @@ public class StudentModel implements Parcelable {
 
     public String getStudent_id (){
         return(this.student_id);
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void checkModel(DatabaseController.AsyncResponse controller){
+        String type = "login";
+        DatabaseController databaseController = new DatabaseController(controller);
+        databaseController.execute(type, getStudent_id(), getPassword());
     }
 }

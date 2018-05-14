@@ -26,19 +26,19 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
     Context context;
 
 
-    DatabaseController(Context ctx, AsyncResponse delegate) {
+    public DatabaseController(Context ctx, AsyncResponse delegate) {
         context = ctx;
         this.delegate = delegate;
     }
 
-    DatabaseController (AsyncResponse delegate) {
+    public DatabaseController(AsyncResponse delegate) {
         this.delegate = delegate;
     }
     DatabaseController(Context ctx) {
         context = ctx;
     } // TODO: Fjern alle controllere hvor denne bliver brugt.
 
-    DatabaseController() {
+    public DatabaseController() {
     }
 
 
@@ -50,6 +50,7 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
         String timer_url = "http://212.10.146.182:8080/timer.php";
         String consent_url = "http://212.10.146.182:8080/consent.php";
         String assessment_url = "http://212.10.146.182:8080/assessment.php";
+        String meeting_url = "http://212.10.146.182:8080/meeting.php";
         if (type.equals("login")) {
             try {
                 String student_id = params[1];
@@ -227,7 +228,77 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
         } else if (type.equals("previoussleep")) {
             try {
                 String student_id = params[1];
-                URL url = new URL(assessment_url);
+                URL url = new URL(assessment_url); //TODO: tilføj den rigtige URL
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.setDoInput(true);
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                String post_data = URLEncoder.encode("student_id", "UTF-8") + "=" + URLEncoder.encode(student_id, "UTF-8");
+                bufferedWriter.write(post_data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
+                InputStream inputStream = httpURLConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+                String result = "";
+                String line = "";
+                while ((line = bufferedReader.readLine()) != null) {
+                    result += line;
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                return result;
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } else if (type.equals("meeting")) {
+            try {
+                String meeting_time = params[1];
+                String student_id = params[2];
+                String user_id = params[3];
+                String meeting_place = params[4];
+                URL url = new URL(meeting_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.setDoInput(true);
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                String post_data = URLEncoder.encode("meeting_time", "UTF-8") + "=" + URLEncoder.encode(meeting_time, "UTF-8") + "&" +
+                        URLEncoder.encode("student_id", "UTF-8") + "=" + URLEncoder.encode(student_id, "UTF-8") + "&" +
+                        URLEncoder.encode("user_id", "UTF-8") + "=" + URLEncoder.encode(user_id, "UTF-8") + "&" +
+                        URLEncoder.encode("meeting_place", "UTF-8") + "=" + URLEncoder.encode(meeting_place, "UTF-8");
+                bufferedWriter.write(post_data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
+                InputStream inputStream = httpURLConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+                String result = "";
+                String line = "";
+                while ((line = bufferedReader.readLine()) != null) {
+                    result += line;
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                return result;
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } else if (type.equals("checkMeeting")) {
+            try {
+                String student_id = params[1];
+                URL url = new URL(meeting_url); //TODO: Tilføj rigtig URL.
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);

@@ -33,8 +33,6 @@ public class MainController extends AppCompatActivity {
 
     private Date sleep_date;
     private Date awoke_date;
-    private Time sleep_time;
-    private Time awoke_time;
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -82,9 +80,8 @@ public class MainController extends AppCompatActivity {
                     String sleep_dateTime = sdfDate.format(sleep_date);
                     String awoke_dateTime = sdfDate.format(awoke_date);
 
-                    String type = "timer";
-                    DatabaseController dbController = new DatabaseController(MainController.this);
-                    dbController.execute(type,sleep_dateTime,awoke_dateTime);
+                    SleepModel sleepModel = new SleepModel(studentModel.getStudent_id(),sleep_dateTime,awoke_dateTime);
+                    sleepModel.updateModel();
 
                     b.setText("start");
                 } else {
@@ -123,7 +120,7 @@ public class MainController extends AppCompatActivity {
                         handleGoToPreviousSleep();
                     }
                     else if(finalI == 2){
-                        handleAssessment(); // TODO: SKAL IKKE VÆRE HER. SKAL BARE KØRE AF SIG SELV. Bruges kun til debug lige pt.
+                        handleGoToMeeting();
                     }
                     else {
                         handleGoToConcent();
@@ -151,7 +148,13 @@ public class MainController extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void handleAssessment(){
+    public void handleAssessment(){ //TODO: SKAL IKKE VÆRE HER.
         new AssessmentController(this);
+    }
+
+    public void handleGoToMeeting() {
+        Intent intent = new Intent(this, MeetingController.class);
+        intent.putExtra("studentID",studentModel.getStudent_id());
+        startActivity(intent);
     }
 }

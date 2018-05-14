@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class AssessmentController implements DatabaseController.AsyncResponse {
 
@@ -39,6 +40,7 @@ public class AssessmentController implements DatabaseController.AsyncResponse {
         ArrayList<Date> awokeTime = new ArrayList<>();
         ArrayList<Long> diffTime = new ArrayList<>();
         SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        sdfDate.setTimeZone(TimeZone.getTimeZone("GMT+2"));
         Long diff = 0L;
         System.out.println(items);
         for(int i = 0; i < items.size(); i = i + 2) {
