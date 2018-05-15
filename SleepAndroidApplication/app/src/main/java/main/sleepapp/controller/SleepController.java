@@ -49,7 +49,7 @@ public class SleepController extends AppCompatActivity implements DatabaseContro
     }
      public void fillView () {
         String type = "previoussleep";
-         DatabaseController databaseController = new DatabaseController(SleepController.this,this);
+         DatabaseController databaseController = new DatabaseController();
          databaseController.execute(type,studentModel.getStudent_id());
      }
 

@@ -24,7 +24,6 @@ import main.sleepapp.util.SleepModelList;
 
 public class AssessmentController{
 
-    private String result;
     private Context context;
     private StudentModel studentModel;
     private MeetingModel meetingModel;
@@ -48,7 +47,7 @@ public class AssessmentController{
     }
 
     private boolean checkConcent() {
-        if(this.studentModel.isConsent()) {
+        if(this.studentModel.getConsent().equals("1")) {
             return true;
         } else {
             return false;

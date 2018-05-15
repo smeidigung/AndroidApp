@@ -20,7 +20,6 @@ public class LoginController extends AppCompatActivity {
 
     private EditText mUserID,mPassword,rPassword,rUserName;
     private StudentModel studentModel;
-    private AlertDialog alertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +79,7 @@ public class LoginController extends AppCompatActivity {
         }
     }
 
-    public void handleLogin(){
+    private void handleLogin(){
         studentModel.setStudent_id(mUserID.getText().toString());
         studentModel.setPassword(mPassword.getText().toString());
         String string = studentModel.checkModel();
@@ -88,12 +87,13 @@ public class LoginController extends AppCompatActivity {
         if (string.equalsIgnoreCase("login success")) {
             Intent intent = new Intent(this,MainController.class);
             this.studentModel.setStudent_id(mUserID.getText().toString());
+            studentModel.loadModel();
             intent.putExtra("studentModel",this.studentModel);
             this.startActivity(intent);
         }
     }
 
-    public void handleGoToRegister() {
+    private void handleGoToRegister() {
         setContentView(R.layout.registerview);
         rPassword = (EditText) findViewById(R.id.RegisterPassword);
         rUserName = (EditText) findViewById(R.id.RegisterName);
@@ -106,12 +106,10 @@ public class LoginController extends AppCompatActivity {
         });
     }
 
-    public void handleGoToLogin () {
+    private void handleGoToLogin () {
         Intent Intent = new Intent(this, LoginController.class);
         startActivity(Intent);
     }
-
-
 }
 
 

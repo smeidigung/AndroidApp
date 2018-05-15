@@ -26,16 +26,12 @@ import main.sleepapp.model.UserModel;
 
 public class MainController extends AppCompatActivity{
 
-    public StudentModel studentModel;
-    GridLayout mainGrid;
+    private StudentModel studentModel;
+    private Date sleepDate, awokeDate;
+    private Context context;
 
-    TextView timerTextView;
+    private TextView timerTextView;
     long startTime = 0;
-
-    private Date sleep_date;
-    private Date awoke_date;
-
-    Context context;
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -62,7 +58,7 @@ public class MainController extends AppCompatActivity{
         this.context = this;
 
 
-        mainGrid = (GridLayout) findViewById(R.id.mainGrid);
+        GridLayout mainGrid = (GridLayout) findViewById(R.id.mainGrid);
         setSingleEvent(mainGrid);
 
         timerTextView = (TextView) findViewById(R.id.timerTextView);
@@ -78,12 +74,12 @@ public class MainController extends AppCompatActivity{
                 if (b.getText().equals("stop")) {
                     timerHandler.removeCallbacks(timerRunnable);
 
-                    awoke_date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+                    awokeDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
 
                     SimpleDateFormat sdfDate = new SimpleDateFormat("yyyyMMddHHmmss");
 
-                    String sleep_dateTime = sdfDate.format(sleep_date);
-                    String awoke_dateTime = sdfDate.format(awoke_date);
+                    String sleep_dateTime = sdfDate.format(sleepDate);
+                    String awoke_dateTime = sdfDate.format(awokeDate);
 
                     SleepModel sleepModel = new SleepModel(studentModel.getStudent_id(),sleep_dateTime,awoke_dateTime);
                     sleepModel.updateModel();
@@ -95,25 +91,13 @@ public class MainController extends AppCompatActivity{
                     b.setText("start");
                 } else {
                     startTime = System.currentTimeMillis();
-                    sleep_date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+                    sleepDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
                     timerHandler.postDelayed(timerRunnable, 0);
                     b.setText("stop");
-
                 }
             }
         });
-
-
     }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        timerHandler.removeCallbacks(timerRunnable);
-        Button b = (Button)findViewById(R.id.button);
-        b.setText("start");
-    }
-
     private void setSingleEvent(GridLayout mainGrid) {
         for (int i = 0; i< mainGrid.getChildCount();i++){
             CardView cardView = (CardView) mainGrid.getChildAt(i);

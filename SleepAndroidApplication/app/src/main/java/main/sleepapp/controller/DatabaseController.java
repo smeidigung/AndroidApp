@@ -21,26 +21,14 @@ import main.sleepapp.model.StudentModel;
 
 public class DatabaseController extends AsyncTask<String, Void, String> {
 
-    public String result;
     public AsyncResponse delegate = null;
-    Context context;
-
-
-    public DatabaseController(Context ctx, AsyncResponse delegate) {
-        context = ctx;
-        this.delegate = delegate;
-    }
 
     public DatabaseController(AsyncResponse delegate) {
         this.delegate = delegate;
     }
-    DatabaseController(Context ctx) {
-        context = ctx;
-    } // TODO: Fjern alle controllere hvor denne bliver brugt.
 
     public DatabaseController() {
     }
-
 
     @Override
     protected String doInBackground(String... params) {
@@ -52,6 +40,7 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
         String assessment_url = "http://212.10.146.182:8080/assessment.php";
         String meeting_url = "http://212.10.146.182:8080/meeting.php";
         String checkMeeting_url = "http://212.10.146.182:8080/loadMeeting.php";
+        String getConsent_url = "http://212.10.146.182:8080/getConsent.php";
         if (type.equals("login")) {
             try {
                 String student_id = params[1];
@@ -300,6 +289,38 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
             try {
                 String student_id = params[1];
                 URL url = new URL(checkMeeting_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.setDoInput(true);
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                String post_data = URLEncoder.encode("student_id", "UTF-8") + "=" + URLEncoder.encode(student_id, "UTF-8");
+                bufferedWriter.write(post_data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
+                InputStream inputStream = httpURLConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+                String result = "";
+                String line = "";
+                while ((line = bufferedReader.readLine()) != null) {
+                    result += line;
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                return result;
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } else if (type.equals("getConsent")) {
+            try {
+                String student_id = params[1];
+                URL url = new URL(getConsent_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);

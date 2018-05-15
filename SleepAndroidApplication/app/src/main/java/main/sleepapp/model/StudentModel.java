@@ -12,13 +12,14 @@ public class StudentModel implements Parcelable {
 
     private String student_id;
     private String password;
-    private boolean consent;
+    private String consent;
 
     public StudentModel () {
     }
 
     public StudentModel (Parcel in) {
         this.student_id = in.readString();
+        this.consent = in.readString();
     }
 
     @Override
@@ -29,6 +30,7 @@ public class StudentModel implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(student_id);
+        dest.writeString(consent);
     }
 
     public static final Parcelable.Creator<StudentModel> CREATOR = new Parcelable.Creator<StudentModel>(){
@@ -55,6 +57,24 @@ public class StudentModel implements Parcelable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void loadModel(){
+        String type = "getConsent";
+        DatabaseController databaseController = new DatabaseController();
+
+        try {
+             String string = databaseController.execute(type, getStudent_id()).get();
+             if(string.equals("0")) {
+                 setConsent("0");
+             } else if (string.equals("1")){
+                 setConsent("1");
+             }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 
     public String checkModel(){
@@ -91,26 +111,20 @@ public class StudentModel implements Parcelable {
         return null;
     }
 
-    public void updateModel(String type, Boolean consent){
+    public void updateModel(String type, String consent){
 
         if (type.equals("consent")) {
             this.setConsent(consent);
-            String str;
-            if(consent) {
-                str = "1";
-            } else {
-                str = "0";
-            }
             DatabaseController dbController = new DatabaseController();
-            dbController.execute(type, str);
+            dbController.execute(type, consent);
         }
     }
 
-    public boolean isConsent() {
+    public String getConsent() {
         return consent;
     }
 
-    public void setConsent(boolean consent) {
+    public void setConsent(String consent) {
         this.consent = consent;
     }
 }

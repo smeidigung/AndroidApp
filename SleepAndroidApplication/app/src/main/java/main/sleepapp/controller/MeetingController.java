@@ -21,13 +21,12 @@ public class MeetingController extends AppCompatActivity{
     private MeetingModel meetingModel;
     private UserModel userModel;
     private StudentModel studentModel;
-    private String type = "meeting";
-    private boolean hasMeeting;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        boolean hasMeeting = false;
         studentModel = getIntent().getParcelableExtra("studentModel");
         hasMeeting = getIntent().getBooleanExtra("hasMeeting",hasMeeting);
 
@@ -72,7 +71,7 @@ public class MeetingController extends AppCompatActivity{
     }
 
     public void handleAccept(){
-        this.type = "meeting";
+        String type = "meeting";
         SimpleDateFormat sdfDate = new SimpleDateFormat("yyyyMMddHHmmss");
         sdfDate.setTimeZone(TimeZone.getTimeZone("GMT+2"));
         String currentDate = sdfDate.format(new java.sql.Date(Calendar.getInstance().getTime().getTime()));
