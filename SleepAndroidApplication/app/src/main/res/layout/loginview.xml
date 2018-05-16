@@ -37,7 +37,7 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColorHint="@android:color/background_light">
+                android:textColorHint="@android:color/white">
 
                 <EditText
                     android:id="@+id/userID"
@@ -48,7 +48,9 @@
                     android:hint="@string/UserName_hint"
                     android:inputType="textEmailAddress"
                     android:textColor="@android:color/white"
-                    android:textColorLink="@color/cardview_light_background" />
+                    android:textColorHint="@android:color/white"
+                    android:textColorLink="@color/cardview_light_background"
+                    android:textSize="24sp" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -65,9 +67,13 @@
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
                     android:maxLines="1"
+                    android:shadowColor="@android:color/white"
                     android:singleLine="true"
+                    android:textColor="@android:color/white"
+                    android:textColorHighlight="@android:color/white"
                     android:textColorHint="@android:color/background_light"
-                    android:textColorLink="@color/cardview_light_background" />
+                    android:textColorLink="@color/cardview_light_background"
+                    android:textSize="24sp" />
 
             </android.support.design.widget.TextInputLayout>
 
