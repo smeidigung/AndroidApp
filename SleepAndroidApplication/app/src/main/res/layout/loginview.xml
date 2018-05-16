@@ -11,6 +11,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+
     tools:context=".controller.LoginController">
 
     <!-- Login progress -->
@@ -35,7 +36,8 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:textColorHint="@android:color/background_light">
 
                 <EditText
                     android:id="@+id/userID"
@@ -44,7 +46,9 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:hint="@string/UserName_hint"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    android:textColor="@android:color/white"
+                    android:textColorLink="@color/cardview_light_background" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -61,7 +65,9 @@
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
                     android:maxLines="1"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:textColorHint="@android:color/background_light"
+                    android:textColorLink="@color/cardview_light_background" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -72,6 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/action_sign_in"
+                android:background="#f06755"
                 android:textStyle="bold" />
 
             <Button
@@ -79,6 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:background="#f06755"
                 android:text="@string/action_register" />
 
         </LinearLayout>

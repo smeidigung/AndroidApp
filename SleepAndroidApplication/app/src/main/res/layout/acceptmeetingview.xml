@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/androidbackground"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -18,6 +19,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="50dp"
             android:text="Det er registreret, at du har søvnproblemer. Ønsker du at arragere et møde med en sundhedskoordinator?"
+            android:textColor="@android:color/white"
             android:textAlignment="center"
             android:textAppearance="@android:style/TextAppearance.Material.Small"
             android:textSize="24sp" />
@@ -30,6 +32,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="48dp"
             android:text="Hvis der trykkes acceptér, betyder det, at en sundhedskoordinator kontaktes. Når I har fundet en passende dato for mødet, kan sundhedskoordinatoren give dig målrettet vejledning, således dine søvnproblemer kan mindskes."
+            android:textColor="@android:color/white"
             android:textAlignment="center"
             android:textSize="18sp" />
 
@@ -47,6 +50,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignTop="@+id/rejectButton"
             android:layout_marginEnd="30dp"
+            android:background="#f06755"
             android:text="Acceptér" />
 
         <Button
@@ -57,6 +61,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginBottom="29dp"
             android:layout_marginStart="30dp"
+            android:background="#f06755"
             android:text="Afvis" />
 
 

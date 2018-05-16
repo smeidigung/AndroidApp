@@ -23,48 +23,34 @@ tools:context=".controller.MainController">
             android:layout_alignParentTop="true"
             android:layout_marginEnd="6dp"
             android:layout_marginTop="5dp"
-            android:background="@android:color/white"
+            android:background="#f06755"
             android:text="Log ud"
             android:textSize="18sp" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2">
-
-        <TextView
-            android:id="@+id/textGrid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Sund Søvn"
-            android:textColor="@android:color/white"
-            android:textSize="34sp" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="102dp">
 
         <TextView
             android:id="@+id/timerTextView"
-            android:layout_width="223dp"
+            android:layout_width="172dp"
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="30dp"
-            android:text="TextView"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="28dp"
+            android:text="Textview"
             android:textAlignment="center"
+            android:textColor="@android:color/black"
             android:textSize="36sp" />
 
         <Button
             android:id="@+id/button"
-            android:layout_width="wrap_content"
+            android:layout_width="156dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="25dp"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/timerTextView"
+            android:background="#f06755"
             android:text="Button" />
     </RelativeLayout>
 

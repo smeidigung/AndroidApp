@@ -21,7 +21,11 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/Register_Name_hint"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColor="@android:color/white"
+            android:textColorHighlight="@android:color/white"
+            android:textColorHint="@android:color/white"
+            android:textColorLink="@android:color/white" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -41,7 +45,11 @@
             android:imeOptions="actionUnspecified"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:textColor="@android:color/white"
+            android:textColorHighlight="@android:color/white"
+            android:textColorHint="@android:color/white"
+            android:textColorLink="@android:color/white" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -53,7 +61,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="42dp"
         android:layout_marginTop="191dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="#f06755"
         android:text="Anuller"
         android:textSize="18sp" />
 
@@ -64,7 +72,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/btn_register_cancel"
         android:layout_marginEnd="50dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="#f06755"
         android:text="Registrer"
         android:textSize="18sp" />
 

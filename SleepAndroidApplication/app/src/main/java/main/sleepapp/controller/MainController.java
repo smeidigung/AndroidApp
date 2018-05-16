@@ -65,13 +65,13 @@ public class MainController extends AppCompatActivity{
         timerTextView.setText("0:00");
 
         Button toggleTimerButton = (Button) findViewById(R.id.button);
-        toggleTimerButton.setText("start");
+        toggleTimerButton.setText("Start Måling af Søvnlængde");
         toggleTimerButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 Button b = (Button) v;
-                if (b.getText().equals("stop")) {
+                if (b.getText().equals("Stop Måling af Søvnlængde")) {
                     timerHandler.removeCallbacks(timerRunnable);
 
                     awokeDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
