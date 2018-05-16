@@ -71,6 +71,7 @@ public class MeetingController extends AppCompatActivity{
     }
 
     public void handleAccept(){
+        meetingModel = new MeetingModel();
         String type = "meeting";
         SimpleDateFormat sdfDate = new SimpleDateFormat("yyyyMMddHHmmss");
         sdfDate.setTimeZone(TimeZone.getTimeZone("GMT+2"));
