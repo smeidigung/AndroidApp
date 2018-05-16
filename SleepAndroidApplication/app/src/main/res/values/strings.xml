@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SleepApp</string>
+    <string name="app_name">Sund Søvn</string>
     <string name="title_activity_main_controller">MainController</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_login_controller">Log Ind</string>

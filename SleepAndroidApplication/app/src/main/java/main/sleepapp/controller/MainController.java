@@ -156,4 +156,7 @@ public class MainController extends AppCompatActivity{
         }
     }
 
+
+/*    Referer student model til databasecontroller*/
+
 }
