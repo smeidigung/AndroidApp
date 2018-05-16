@@ -47,9 +47,14 @@ public class AssessmentController{
     }
 
     private boolean checkConcent() {
-        if(this.studentModel.getConsent().equals("1")) {
-            return true;
-        } else {
+        try{
+            if(this.studentModel.getConsent().equals("1")) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (NullPointerException e){
             return false;
         }
 

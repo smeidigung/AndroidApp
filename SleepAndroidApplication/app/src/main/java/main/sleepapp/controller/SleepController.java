@@ -11,7 +11,7 @@ import main.sleepapp.R;
 import main.sleepapp.model.StudentModel;
 import main.sleepapp.util.DatePickerFragment;
 
-public class SleepController extends AppCompatActivity implements DatabaseController.AsyncResponse {
+public class SleepController extends AppCompatActivity {
 
     StudentModel studentModel;
 
@@ -39,9 +39,6 @@ public class SleepController extends AppCompatActivity implements DatabaseContro
 
     public void handleGoToAssessment(Context context){
         new AssessmentController(studentModel,context);
-    }
-    public void processFinish(String string) {
-
     }
 
     public void getDate(int year, int month, int day) {

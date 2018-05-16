@@ -17,7 +17,7 @@ public class SleepModelList {
 
     public ArrayList<SleepModel> sleepModelList = new ArrayList<>();
 
-    public SleepModelList(StudentModel studentModel){
+    public SleepModelList(StudentModel studentModel) {
         String type = "assessment";
         SimpleDateFormat sdfDate = new SimpleDateFormat("yyyyMMddHHmmss");
         Date current_date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
@@ -28,10 +28,14 @@ public class SleepModelList {
         String result;
         List<String> items;
         try {
-            result = dbController.execute(type, studentModel.getStudent_id(),earliere_dateTime).get();
-            items = Arrays.asList(result.split("\\s*,\\s*"));
-            for (int i = 0; i < items.size(); i = i + 2) {
-                sleepModelList.add(new SleepModel(studentModel.getStudent_id(),items.get(i),items.get(i+1)));
+            result = dbController.execute(type, studentModel.getStudent_id(), earliere_dateTime).get();
+            if (result.contains("Error:")) {
+                return;
+            } else {
+                items = Arrays.asList(result.split("\\s*,\\s*"));
+                for (int i = 0; i < items.size(); i = i + 2) {
+                    sleepModelList.add(new SleepModel(studentModel.getStudent_id(), items.get(i), items.get(i + 1)));
+                }
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

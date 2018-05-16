@@ -116,7 +116,7 @@ public class StudentModel implements Parcelable {
         if (type.equals("consent")) {
             this.setConsent(consent);
             DatabaseController dbController = new DatabaseController();
-            dbController.execute(type, consent);
+            dbController.execute(type, getStudent_id(), consent);
         }
     }
 

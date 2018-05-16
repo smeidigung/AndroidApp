@@ -18,7 +18,7 @@ public class SleepModel {
     public void updateModel() {
         String type = "timer";
         DatabaseController dbController = new DatabaseController();
-        dbController.execute(type, getSleep_time(), getAwoke_time());
+        dbController.execute(type, getStudent_id(), getSleep_time(), getAwoke_time());
     }
 
     public void loadModel(){

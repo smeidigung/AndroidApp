@@ -114,8 +114,9 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
 
         } else if (type.equals("timer")) {
             try {
-                String sleep_time = params[1];
-                String awoke_time = params[2];
+                String student_id = params[1];
+                String sleep_time = params[2];
+                String awoke_time = params[3];
                 URL url = new URL(timer_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
@@ -124,7 +125,7 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
                 String post_data =
-                        URLEncoder.encode("student_id", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8") + "&" + //TODO: <-- fix the student_id thing
+                        URLEncoder.encode("student_id", "UTF-8") + "=" + URLEncoder.encode(student_id, "UTF-8") + "&" +
                                 URLEncoder.encode("sleep_time", "UTF-8") + "=" + URLEncoder.encode(sleep_time, "UTF-8") + "&" +
                                 URLEncoder.encode("awoke_time", "UTF-8") + "=" + URLEncoder.encode(awoke_time, "UTF-8");
                 bufferedWriter.write(post_data);
@@ -150,7 +151,8 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
 
         } else if (type.equals("consent")) {
             try {
-                String student_consent = params[1];
+                String student_id = params[1];
+                String student_consent = params[2];
                 URL url = new URL(consent_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
@@ -159,7 +161,7 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
                 String post_data =
-                        URLEncoder.encode("student_id", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8") + "&" + //TODO: <-- fix the student_id thing
+                        URLEncoder.encode("student_id", "UTF-8") + "=" + URLEncoder.encode(student_id, "UTF-8") + "&" +
                                 URLEncoder.encode("student_consent", "UTF-8") + "=" + URLEncoder.encode(student_consent, "UTF-8");
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
@@ -218,7 +220,7 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
         } else if (type.equals("previoussleep")) {
             try {
                 String student_id = params[1];
-                URL url = new URL(assessment_url); //TODO: tilføj den rigtige URL
+                URL url = new URL(assessment_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
