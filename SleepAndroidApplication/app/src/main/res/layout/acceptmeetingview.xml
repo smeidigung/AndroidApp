@@ -1,39 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
-
+        android:layout_height="400dp">
 
         <TextView
-            android:id="@+id/SoevnProblem"
+            android:id="@+id/soevnProblem"
             android:layout_width="match_parent"
             android:layout_height="117dp"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="84dp"
+            android:layout_marginTop="50dp"
             android:text="Det er registreret, at du har søvnproblemer. Ønsker du at arragere et møde med en sundhedskoordinator?"
             android:textAlignment="center"
             android:textAppearance="@android:style/TextAppearance.Material.Small"
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/TINA1"
+            android:id="@+id/betingelserMoede"
             android:layout_width="350dp"
-            android:layout_height="wrap_content"
+            android:layout_height="148dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="129dp"
-            android:text="Hvis der trykkes acceptér, betyder det, at en sundhedskoordinator kontaktes. Når I har fundet en passende dato for mødet, kan sundhedskoordinatoren give dig målrettet vejledning, således dine søvnproblemer kan mindskes.  "
+            android:layout_marginBottom="48dp"
+            android:text="Hvis der trykkes acceptér, betyder det, at en sundhedskoordinator kontaktes. Når I har fundet en passende dato for mødet, kan sundhedskoordinatoren give dig målrettet vejledning, således dine søvnproblemer kan mindskes."
             android:textAlignment="center"
             android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
         <Button
@@ -51,8 +55,14 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="31dp"
+            android:layout_marginBottom="29dp"
             android:layout_marginStart="30dp"
             android:text="Afvis" />
+
+
     </RelativeLayout>
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
+
+
+
+
