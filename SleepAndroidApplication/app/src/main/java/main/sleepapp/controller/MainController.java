@@ -88,12 +88,12 @@ public class MainController extends AppCompatActivity{
                     sleepController.setStudentModel(studentModel);
                     sleepController.handleGoToAssessment(context);
 
-                    b.setText("start");
+                    b.setText("Start Måling af Søvnlængde");
                 } else {
                     startTime = System.currentTimeMillis();
                     sleepDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
                     timerHandler.postDelayed(timerRunnable, 0);
-                    b.setText("stop");
+                    b.setText("Stop Måling af Søvnlængde");
                 }
             }
         });

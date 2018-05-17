@@ -48,8 +48,9 @@
                     android:hint="@string/UserName_hint"
                     android:inputType="textEmailAddress"
                     android:textColor="@android:color/white"
+                    android:textColorHighlight="@android:color/white"
                     android:textColorHint="@android:color/white"
-                    android:textColorLink="@color/cardview_light_background"
+                    android:textColorLink="@android:color/white"
                     android:textSize="24sp" />
             </android.support.design.widget.TextInputLayout>
 
@@ -66,13 +67,13 @@
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
+                    app:passwordToggleTint="#FFF"
                     android:maxLines="1"
-                    android:shadowColor="@android:color/white"
                     android:singleLine="true"
                     android:textColor="@android:color/white"
                     android:textColorHighlight="@android:color/white"
-                    android:textColorHint="@android:color/background_light"
-                    android:textColorLink="@color/cardview_light_background"
+                    android:textColorHint="@android:color/white"
+                    android:textColorLink="@android:color/white"
                     android:textSize="24sp" />
 
             </android.support.design.widget.TextInputLayout>

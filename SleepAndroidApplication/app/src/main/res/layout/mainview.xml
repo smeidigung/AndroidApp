@@ -46,7 +46,7 @@ tools:context=".controller.MainController">
 
         <Button
             android:id="@+id/button"
-            android:layout_width="156dp"
+            android:layout_width="187dp"
             android:layout_height="59dp"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
