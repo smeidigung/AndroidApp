@@ -64,6 +64,16 @@ public class MainController extends AppCompatActivity{
         timerTextView = (TextView) findViewById(R.id.timerTextView);
         timerTextView.setText("0:00");
 
+        Button logoutButton = (Button) findViewById(R.id.logoutButton);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                handleLogoutButton();
+            }
+        });
+
+
         Button toggleTimerButton = (Button) findViewById(R.id.button);
         toggleTimerButton.setText("Start Måling af Søvnlængde");
         toggleTimerButton.setOnClickListener(new View.OnClickListener() {
@@ -149,6 +159,10 @@ public class MainController extends AppCompatActivity{
             intent.putExtra("hasMeeting",true);
             startActivity(intent);
         }
+    }
+
+    public void handleLogoutButton() {
+        finish();
     }
 
 

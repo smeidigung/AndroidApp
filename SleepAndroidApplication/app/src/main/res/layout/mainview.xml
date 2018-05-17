@@ -16,7 +16,7 @@ tools:context=".controller.MainController">
         android:layout_height="35dp">
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/logoutButton"
             android:layout_width="104dp"
             android:layout_height="25dp"
             android:layout_alignParentEnd="true"
