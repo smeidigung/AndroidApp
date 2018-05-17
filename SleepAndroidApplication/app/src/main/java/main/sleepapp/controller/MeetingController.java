@@ -55,7 +55,7 @@ public class MeetingController extends AppCompatActivity{
 
     }
 
-    public void showMeeting(){
+    private void showMeeting(){
         setContentView(R.layout.meetingview);
         meetingModel = new MeetingModel();
         userModel = new UserModel();
@@ -70,7 +70,7 @@ public class MeetingController extends AppCompatActivity{
         textStatus.setText("Venter på svar");
     }
 
-    public void handleAccept(){
+    private void handleAccept(){
         meetingModel = new MeetingModel();
         String type = "meeting";    
         SimpleDateFormat sdfDate = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -82,7 +82,7 @@ public class MeetingController extends AppCompatActivity{
         finish();
     }
 
-    public void handleReject(){
+    private void handleReject(){
         finish();
     }
 }

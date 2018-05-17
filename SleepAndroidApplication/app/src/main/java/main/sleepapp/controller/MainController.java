@@ -148,11 +148,6 @@ public class MainController extends AppCompatActivity{
             intent.putExtra("studentModel",studentModel);
             intent.putExtra("hasMeeting",true);
             startActivity(intent);
-        } else {
-            Intent intent = new Intent(this, MeetingController.class);
-            intent.putExtra("studentModel",studentModel);
-            intent.putExtra("hasMeeting",false);
-            startActivity(intent);
         }
     }
 

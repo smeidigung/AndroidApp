@@ -90,7 +90,7 @@ public class AssessmentController{
 
     private void alertStudent() {
         this.meetingModel = new MeetingModel();
-        if (!(new MeetingModel().checkModel(studentModel))) {
+        if (!(meetingModel.checkModel(studentModel))) {
 
             final AlertDialog.Builder builder;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
