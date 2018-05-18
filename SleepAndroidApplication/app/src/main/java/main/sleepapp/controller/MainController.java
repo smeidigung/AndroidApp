@@ -69,7 +69,7 @@ public class MainController extends AppCompatActivity{
 
             @Override
             public void onClick(View v) {
-                handleLogoutButton();
+                logout();
             }
         });
 
@@ -117,42 +117,42 @@ public class MainController extends AppCompatActivity{
                 public void onClick(View v) {
 
                     if (finalI == 0){
-                        handleGoToSleepHabits();
+                        goToSleephabits();
                     }
                     else if(finalI == 1){
-                        handleGoToPreviousSleep();
+                        goToPreviousSleep();
                     }
                     else if(finalI == 2){
-                        handleGoToMeeting();
+                        goToAcceptMeeting();
                     }
                     else {
-                        handleGoToConsent();
+                        goToConsent();
                     }
                 }
             })  ;
         }
     }
 
-    public void handleGoToSleepHabits () {
+    public void goToSleephabits () {
         Intent intent = new Intent(this, SleepController.class);
         intent.putExtra("type","sleephabits");
         startActivity(intent);
     }
 
-    public void handleGoToConsent () {
+    public void goToConsent () {
         Intent intent = new Intent(this, ConsentController.class);
         intent.putExtra("studentModel",studentModel);
         startActivity(intent);
     }
 
-    public void handleGoToPreviousSleep () {
+    public void goToPreviousSleep () {
         Intent intent = new Intent(this, SleepController.class);
         intent.putExtra("type","previoussleep");
         intent.putExtra("studentmodel", studentModel);
         startActivity(intent);
     }
 
-    public void handleGoToMeeting() {
+    public void goToAcceptMeeting() {
         if(new MeetingModel().checkModel(studentModel)) {
             Intent intent = new Intent(this, MeetingController.class);
             intent.putExtra("studentModel",studentModel);
@@ -161,7 +161,7 @@ public class MainController extends AppCompatActivity{
         }
     }
 
-    public void handleLogoutButton() {
+    public void logout() {
         finish();
     }
 

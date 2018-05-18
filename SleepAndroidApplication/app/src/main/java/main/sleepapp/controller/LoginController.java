@@ -3,7 +3,6 @@ package main.sleepapp.controller;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -82,7 +81,7 @@ public class LoginController extends AppCompatActivity {
     private void handleLogin(){
         studentModel.setStudent_id(mUserID.getText().toString());
         studentModel.setPassword(mPassword.getText().toString());
-        String string = studentModel.checkModel();
+        String string = validateID(studentModel.getStudent_id(),studentModel.getPassword());
 
         if (string.equalsIgnoreCase("login success")) {
             Intent intent = new Intent(this,MainController.class);
@@ -91,6 +90,11 @@ public class LoginController extends AppCompatActivity {
             intent.putExtra("studentModel",this.studentModel);
             this.startActivity(intent);
         }
+    }
+
+    private String validateID(String studentID, String studentPassword){
+        String string = studentModel.validateID();
+        return string;
     }
 
     private void handleGoToRegister() {

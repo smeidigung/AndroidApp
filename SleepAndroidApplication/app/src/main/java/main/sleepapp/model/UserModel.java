@@ -1,5 +1,11 @@
 package main.sleepapp.model;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+import main.sleepapp.controller.DatabaseController;
+
 public class UserModel {
 
     private String name;
@@ -7,8 +13,7 @@ public class UserModel {
     private String password;
 
     public UserModel(){
-        this.setName("Ukendt");
-        this.setUserID("Ukendt");
+
     }
 
     public String getName() {
@@ -33,5 +38,20 @@ public class UserModel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void loadModel(String userID) {
+        String type = "loadUserModel";
+        DatabaseController dbController = new DatabaseController();
+        try {
+            setUserID(userID);
+            String result = dbController.execute(type, getUserID()).get();
+            List<String> items = Arrays.asList(result.split("\\s*,\\s*"));
+            setName(items.get(0) +" "+ items.get(1));
+        } catch (ExecutionException e) {
+
+        } catch (InterruptedException e) {
+
+        }
     }
 }

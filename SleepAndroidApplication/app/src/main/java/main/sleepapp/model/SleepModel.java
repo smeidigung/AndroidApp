@@ -1,6 +1,5 @@
 package main.sleepapp.model;
 
-
 import main.sleepapp.controller.DatabaseController;
 
 public class SleepModel {
@@ -19,12 +18,6 @@ public class SleepModel {
         String type = "timer";
         DatabaseController dbController = new DatabaseController();
         dbController.execute(type, getStudent_id(), getSleep_time(), getAwoke_time());
-    }
-
-    public void loadModel(){
-        String type = "timer";
-        DatabaseController dbController = new DatabaseController();
-        dbController.execute(type, getSleep_time(), getAwoke_time());
     }
 
     public String getStudent_id() {

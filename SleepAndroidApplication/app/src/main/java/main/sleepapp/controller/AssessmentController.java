@@ -4,15 +4,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.icu.util.DateInterval;
 import android.os.Build;
-import android.text.format.DateUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
@@ -31,8 +27,8 @@ public class AssessmentController{
 
     public AssessmentController(StudentModel studentModel, Context context) {
         this.context = context;
-        this.studentModel = studentModel;
-        this.sleepModelList = new SleepModelList(studentModel);
+        this.setStudentModel(studentModel);
+        this.setSleepModelList(new SleepModelList(studentModel));
         if(checkConcent()) {
             thresholdNotifier(sleepModelList.sleepModelList);
         } else {
@@ -89,7 +85,7 @@ public class AssessmentController{
     }
 
     private void alertStudent() {
-        this.meetingModel = new MeetingModel();
+        this.setMeetingModel(new MeetingModel());
         if (!(meetingModel.checkModel(studentModel))) {
 
             final AlertDialog.Builder builder;
@@ -121,4 +117,15 @@ public class AssessmentController{
         }
     }
 
+    public void setStudentModel(StudentModel studentModel) {
+        this.studentModel = studentModel;
+    }
+
+    public void setMeetingModel(MeetingModel meetingModel) {
+        this.meetingModel = meetingModel;
+    }
+
+    public void setSleepModelList(SleepModelList sleepModelList) {
+        this.sleepModelList = sleepModelList;
+    }
 }

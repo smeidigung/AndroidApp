@@ -16,8 +16,8 @@ public class MeetingModel{
 
     private String meetingLocation;
     private Date meetingTime;
-    private StudentModel participatingStudent;
-    private UserModel participatingCoordinator;
+    private String participatingStudent;
+    private String participatingCoordinator;
 
     public String getMeetingLocation() {
         return meetingLocation;
@@ -35,24 +35,8 @@ public class MeetingModel{
         this.meetingTime = meetingTime;
     }
 
-    public StudentModel getParticipatingStudent() {
-        return participatingStudent;
-    }
-
-    public void setParticipatingStudent(StudentModel participatingStudent) {
-        this.participatingStudent = participatingStudent;
-    }
-
-    public UserModel getParticipatingCoordinator() {
-        return participatingCoordinator;
-    }
-
-    public void setParticipatingCoordinator(UserModel participatingCoordinator) {
-        this.participatingCoordinator = participatingCoordinator;
-    }
-
     public boolean checkModel(StudentModel studentModel){
-        setParticipatingStudent(studentModel);
+        setParticipatingStudent(studentModel.getStudent_id());
         String type = "loadMeeting";
         DatabaseController dbController = new DatabaseController();
         try {
@@ -77,9 +61,8 @@ public class MeetingModel{
 
          return false;
     }
-    public void loadModel(StudentModel studentModel,UserModel userModel){
-        setParticipatingStudent(studentModel);
-        setParticipatingCoordinator(userModel); //TODO: Skal laves om så den selv henter den userModel hvis userID der er i databasen i den givende meeting tabel.
+    public void loadModel(StudentModel studentModel){
+        setParticipatingStudent(studentModel.getStudent_id());
         String type = "loadMeeting";
         DatabaseController dbController = new DatabaseController();
         try {
@@ -89,13 +72,11 @@ public class MeetingModel{
             for(int i = 0; i < items.size(); i = i + 4) {
                 try {
                     setMeetingTime(sdfDate.parse(items.get(i)));
+                    setParticipatingCoordinator(items.get(i+2));
                     setMeetingLocation(items.get(i+3));
                 } catch (ParseException e) {
-
                 }
             }
-
-
         } catch (ExecutionException e) {
 
         } catch (InterruptedException e) {
@@ -109,5 +90,21 @@ public class MeetingModel{
         String studentID = params[2];
         DatabaseController databaseController = new DatabaseController();
         databaseController.execute(type,currentDate,studentID,"0","Ukendt"); //TODO: Ændr ukendt til user_id
+    }
+
+    public String getParticipatingStudent() {
+        return participatingStudent;
+    }
+
+    public void setParticipatingStudent(String participatingStudent) {
+        this.participatingStudent = participatingStudent;
+    }
+
+    public String getParticipatingCoordinator() {
+        return participatingCoordinator;
+    }
+
+    public void setParticipatingCoordinator(String participatingCoordinator) {
+        this.participatingCoordinator = participatingCoordinator;
     }
 }

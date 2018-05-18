@@ -1,19 +1,16 @@
 package main.sleepapp.controller;
 
-import android.app.DialogFragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 
 
 import main.sleepapp.R;
 import main.sleepapp.model.StudentModel;
-import main.sleepapp.util.DatePickerFragment;
 
 public class SleepController extends AppCompatActivity {
 
-    StudentModel studentModel;
+    private StudentModel studentModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,23 +29,9 @@ public class SleepController extends AppCompatActivity {
 
     }
 
-    public void showDatePickerDialog(View v) {
-        DialogFragment newFragment = new DatePickerFragment();
-        newFragment.show(getFragmentManager(),"dataPicker");
-    }
-
     public void handleGoToAssessment(Context context){
         new AssessmentController(studentModel,context);
     }
-
-    public void getDate(int year, int month, int day) {
-
-    }
-     public void fillView () {
-        String type = "previoussleep";
-         DatabaseController databaseController = new DatabaseController();
-         databaseController.execute(type,studentModel.getStudent_id());
-     }
 
      public void setStudentModel(StudentModel studentModel) {
         this.studentModel = studentModel;

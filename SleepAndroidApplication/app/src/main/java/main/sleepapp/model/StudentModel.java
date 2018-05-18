@@ -77,10 +77,9 @@ public class StudentModel implements Parcelable {
         }
     }
 
-    public String checkModel(){
+    public String validateID(){
         String type = "login";
         DatabaseController databaseController = new DatabaseController();
-
         try {
             return databaseController.execute(type, getStudent_id(), getPassword()).get();
         } catch (InterruptedException e) {
