@@ -89,7 +89,7 @@ public class MeetingModel{
         String currentDate = params[1];
         String studentID = params[2];
         DatabaseController databaseController = new DatabaseController();
-        databaseController.execute(type,currentDate,studentID,"0","Ukendt"); //TODO: Ændr ukendt til user_id
+        databaseController.execute(type,currentDate,studentID,"0","Ukendt");
     }
 
     public String getParticipatingStudent() {
