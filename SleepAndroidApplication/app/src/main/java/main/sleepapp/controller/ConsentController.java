@@ -47,6 +47,7 @@ public class ConsentController extends AppCompatActivity {
         Intent intent = new Intent(ConsentController.this, MainController.class);
         intent.putExtra("studentModel",studentModel);
         ConsentController.this.startActivity(intent);
+        finish();
     }
 
     private void handleAccept(){
@@ -55,6 +56,7 @@ public class ConsentController extends AppCompatActivity {
         Intent intent = new Intent(ConsentController.this, MainController.class);
         intent.putExtra("studentModel",studentModel);
         ConsentController.this.startActivity(intent);
+        finish();
     }
 
 
