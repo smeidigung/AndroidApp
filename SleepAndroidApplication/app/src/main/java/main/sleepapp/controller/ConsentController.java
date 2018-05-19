@@ -10,10 +10,19 @@ import main.sleepapp.R;
 import main.sleepapp.model.StudentModel;
 
 
+/**
+ * ConsentController is used to handle the ConsentView.
+ * It takes a user input and set the database values accordingly.
+ */
 public class ConsentController extends AppCompatActivity {
 
     private StudentModel studentModel;
 
+    /**
+     * The default method to be called in an activity.
+     * It set the layout file to be used, and instantiates the button on screen.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,10 +46,12 @@ public class ConsentController extends AppCompatActivity {
                 handleAccept();
             }
         });
-
-
     }
 
+    /**
+     * Is called when the user clicks the "REJECT" button, and sets the consent value in the
+     * database to 0. Then calls the MainController activity.
+     */
     private void handleReject() {
         String type = "consent";
         studentModel.updateModel(type,"0");
@@ -50,6 +61,10 @@ public class ConsentController extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * Is called when the user clicks the "ACCEPT" button, and sets the consent value in the
+     * database to 1. Then calls the MainController activity.
+     */
     private void handleAccept(){
         String type = "consent";
         studentModel.updateModel(type,"1");
@@ -58,6 +73,4 @@ public class ConsentController extends AppCompatActivity {
         ConsentController.this.startActivity(intent);
         finish();
     }
-
-
 }
