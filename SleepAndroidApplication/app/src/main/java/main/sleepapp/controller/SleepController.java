@@ -29,6 +29,12 @@ public class SleepController extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onPause(){
+        super.onPause();
+        finish();
+    }
+
     public void handleGoToAssessment(Context context){
         new AssessmentController(studentModel,context);
     }

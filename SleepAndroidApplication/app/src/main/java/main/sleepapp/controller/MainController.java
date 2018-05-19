@@ -137,12 +137,14 @@ public class MainController extends AppCompatActivity{
         Intent intent = new Intent(this, SleepController.class);
         intent.putExtra("type","sleephabits");
         startActivity(intent);
+        finish();
     }
 
     public void goToConsent () {
         Intent intent = new Intent(this, ConsentController.class);
         intent.putExtra("studentModel",studentModel);
         startActivity(intent);
+        finish();
     }
 
     public void goToPreviousSleep () {
@@ -150,6 +152,7 @@ public class MainController extends AppCompatActivity{
         intent.putExtra("type","previoussleep");
         intent.putExtra("studentmodel", studentModel);
         startActivity(intent);
+        finish();
     }
 
     public void goToAcceptMeeting() {
@@ -158,6 +161,7 @@ public class MainController extends AppCompatActivity{
             intent.putExtra("studentModel",studentModel);
             intent.putExtra("hasMeeting",true);
             startActivity(intent);
+            finish();
         }
     }
 

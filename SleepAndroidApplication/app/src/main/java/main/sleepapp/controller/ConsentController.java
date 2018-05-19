@@ -44,12 +44,18 @@ public class ConsentController extends AppCompatActivity {
     private void handleReject() {
         String type = "consent";
         studentModel.updateModel(type,"0");
+        Intent intent = new Intent(ConsentController.this, MainController.class);
+        intent.putExtra("studentModel",studentModel);
+        ConsentController.this.startActivity(intent);
         finish();
     }
 
     private void handleAccept(){
         String type = "consent";
         studentModel.updateModel(type,"1");
+        Intent intent = new Intent(ConsentController.this, MainController.class);
+        intent.putExtra("studentModel",studentModel);
+        ConsentController.this.startActivity(intent);
         finish();
     }
 
