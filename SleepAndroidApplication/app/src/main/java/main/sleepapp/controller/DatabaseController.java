@@ -19,17 +19,22 @@ import java.net.URLEncoder;
 
 import main.sleepapp.model.StudentModel;
 
+/**
+ * DatabaseController is used to communicate with a webservice, and is an extension of the
+ * superclass ASyncClass. This is used to keep the main thread free of the task of waiting for a
+ * webservice to answer. It override the methods doInBackground, onPreExecute, and onPostExecute.
+ */
 public class DatabaseController extends AsyncTask<String, Void, String> {
 
-    public AsyncResponse delegate = null;
+    private AsyncResponse delegate = null;
 
-    public DatabaseController(AsyncResponse delegate) {
-        this.delegate = delegate;
-    }
-
-    public DatabaseController() {
-    }
-
+    /**
+     * Takes the String array params and calls a given database operation, specified by params[0].
+     * e.i. "login"
+     * @param params    The strings to me used in the database operation, always a database
+     *                  operation type, and some parameters.
+     * @return          The string returned by the database.
+     */
     @Override
     protected String doInBackground(String... params) {
         String type = params[0];
@@ -393,6 +398,11 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
 
     }
 
+    /**
+     * This is called after doInBackground, and is used to store the data to be returned to the
+     * initial objects method processFinish, if the objects class has it implemented.
+     * @param result    The string to be returned to the initial object.
+     */
     @Override
     protected void onPostExecute(String result) {
         if (delegate != null) {
@@ -400,11 +410,19 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
         }
     }
 
+    /**
+     * Fuck knows, what this does.
+     * @param values    Ahh, yes - values.
+     */
     @Override
     protected void onProgressUpdate(Void... values) {
         super.onProgressUpdate(values);
     }
 
+    /**
+     * Is called when the onPostExecute is called, and calls initial objects method processFinish,
+     * if the objects class has it implemented, with the data returned by the webservice.
+     */
     public interface AsyncResponse {
         void processFinish(String output);
     }
