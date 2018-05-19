@@ -3,6 +3,9 @@ package main.sleepapp.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+import java.util.List;
+import android.util.Pair;
 import java.util.concurrent.ExecutionException;
 
 import main.sleepapp.controller.DatabaseController;

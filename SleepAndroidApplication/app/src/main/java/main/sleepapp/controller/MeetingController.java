@@ -53,6 +53,11 @@ public class MeetingController extends AppCompatActivity{
 
 
     }
+    @Override
+    public void onPause(){
+        super.onPause();
+        finish();
+    }
 
     private void showMeeting(){
         setContentView(R.layout.meetingview);
