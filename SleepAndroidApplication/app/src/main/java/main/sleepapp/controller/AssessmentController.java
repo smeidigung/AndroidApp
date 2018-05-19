@@ -18,6 +18,11 @@ import main.sleepapp.model.SleepModel;
 import main.sleepapp.model.StudentModel;
 import main.sleepapp.util.SleepModelList;
 
+/**
+ * AssessmentController takes a StudentModel and handles whether or not an alert should be given to the user.
+ * It contains methods for, checking whether or not a user has given consent about sharing its user date and
+ * producing a alertDialog.
+ */
 public class AssessmentController{
 
     private Context context;
@@ -25,24 +30,42 @@ public class AssessmentController{
     private MeetingModel meetingModel;
     private SleepModelList sleepModelList;
 
+    /**
+     * This is the constructor for the class, and takes the input arguments StudentModel and a
+     * Context.
+     * Using the StudentModel, it calls for a "has given consent"-check, and uses Context to inform
+     * where to display the alertDialog.
+     * @param studentModel  The StudentModel to be used for when checking for consent and what data
+     *                      to use.
+     * @param context       The Context where the AlertDialog should be displayed.
+     */
     public AssessmentController(StudentModel studentModel, Context context) {
         this.context = context;
         this.setStudentModel(studentModel);
         this.setSleepModelList(new SleepModelList(studentModel));
-        if(checkConcent()) {
+        if(checkConsent()) {
             thresholdNotifier(sleepModelList.sleepModelList);
         } else {
             goToConsent();
         }
     }
 
+    /**
+     * Is used for displaying the "give consent"-screen, given that the user hasn't already given
+     * consent.
+     */
     private void goToConsent() {
         Intent intent = new Intent(context, ConsentController.class);
         intent.putExtra("studentModel",studentModel);
         context.startActivity(intent);
     }
 
-    private boolean checkConcent() {
+    /**
+     * Is used for checking whether or not the user has given consent, by checking the consent value
+     * in StudentModel.
+     * @return The boolean value of whether or not the user has given consent
+     */
+    private boolean checkConsent() {
         try{
             if(this.studentModel.getConsent().equals("1")) {
                 return true;
@@ -56,34 +79,24 @@ public class AssessmentController{
 
     }
 
+    /**
+     * Used to check if the average sleep time is less than 8 hours.
+     * @param sleepModelList    The list of sleepModel's to be checked.
+     */
     private void thresholdNotifier(List<SleepModel> sleepModelList) {
-        ArrayList<Date> sleepTime = new ArrayList<>();
-        ArrayList<Date> awokeTime = new ArrayList<>();
-        ArrayList<Long> diffTime = new ArrayList<>();
-        SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        sdfDate.setTimeZone(TimeZone.getTimeZone("GMT+2"));
-        Long diff = 0L;
-        for(SleepModel sleepModel: sleepModelList) {
-            try {
-                sleepTime.add(sdfDate.parse(sleepModel.getSleep_time()));
-                awokeTime.add(sdfDate.parse(sleepModel.getAwoke_time()));
-            } catch (ParseException e) {
-                System.out.println("DATES IS WRONG");
-            }
-        }
-        for (int i = 0; i < sleepTime.size(); i++) {
-            diffTime.add((sleepTime.get(i).getTime() - awokeTime.get(i).getTime())*-1);
-            diff += diffTime.get(i);
-        }
-        diff = diff/diffTime.size();
+        Long diff = this.sleepModelList.diffSleepTime(sleepModelList);
         if (diff < 28800000L) {
             System.out.println(diff);
             alertStudent();
         }
-
-
     }
 
+    /**
+     * Creates a AlertDialog if the user hasn't already arranged a meeting with a HC.
+     * The user is then display with a choice of "Yes, arrange a meeting, please." or "No, thanks"
+     * The positive answer creates a meetingController activity.
+     * The negative answer simply closes the dialog, and the user is asked again after next sleep.
+     */
     private void alertStudent() {
         this.setMeetingModel(new MeetingModel());
         if (!(meetingModel.checkModel(studentModel))) {
@@ -117,14 +130,26 @@ public class AssessmentController{
         }
     }
 
+    /**
+     * Sets the StudentModel
+     * @param studentModel  The StudentModel to be set.
+     */
     public void setStudentModel(StudentModel studentModel) {
         this.studentModel = studentModel;
     }
 
+    /**
+     * Sets the MeetingMode
+     * @param meetingModel  The meeting model to be set.
+     */
     public void setMeetingModel(MeetingModel meetingModel) {
         this.meetingModel = meetingModel;
     }
 
+    /**
+     * Set the SleepModelList.
+     * @param sleepModelList    The SleepModelList to be set.
+     */
     public void setSleepModelList(SleepModelList sleepModelList) {
         this.sleepModelList = sleepModelList;
     }

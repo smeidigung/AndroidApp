@@ -1,11 +1,13 @@
 package main.sleepapp.util;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.concurrent.ExecutionException;
 
 import main.sleepapp.controller.DatabaseController;
@@ -42,5 +44,27 @@ public class SleepModelList {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+    }
+
+    public Long diffSleepTime(List<SleepModel> sleepModelList){
+        ArrayList<Date> sleepTime = new ArrayList<>();
+        ArrayList<Date> awokeTime = new ArrayList<>();
+        ArrayList<Long> diffTime = new ArrayList<>();
+        SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        sdfDate.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+        Long diff = 0L;
+        for(SleepModel sleepModel: sleepModelList) {
+            try {
+                sleepTime.add(sdfDate.parse(sleepModel.getSleep_time()));
+                awokeTime.add(sdfDate.parse(sleepModel.getAwoke_time()));
+            } catch (ParseException e) {
+                System.out.println("DATES IS WRONG");
+            }
+        }
+        for (int i = 0; i < sleepTime.size(); i++) {
+            diffTime.add((sleepTime.get(i).getTime() - awokeTime.get(i).getTime())*-1);
+            diff += diffTime.get(i);
+        }
+        return diff/diffTime.size();
     }
 }
