@@ -9,7 +9,6 @@ import android.widget.Button;
 import main.sleepapp.R;
 import main.sleepapp.model.StudentModel;
 
-
 /**
  * ConsentController is used to handle the ConsentView.
  * It takes a user input and set the database values accordingly.
