@@ -1,5 +1,6 @@
 package main.sleepapp.controller;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -96,6 +97,14 @@ public class MeetingController extends AppCompatActivity{
 
     private void handleReject(){
         finish();
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        Intent intent = new Intent(MeetingController.this, MainController.class);
+        intent.putExtra("studentModel",studentModel);
+        MeetingController.this.startActivity(intent);
     }
 
     public MeetingModel getMeetingModel() {

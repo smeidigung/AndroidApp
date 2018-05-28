@@ -54,9 +54,6 @@ public class ConsentController extends AppCompatActivity {
     private void handleReject() {
         String type = "consent";
         studentModel.updateModel(type,"0");
-        Intent intent = new Intent(ConsentController.this, MainController.class);
-        intent.putExtra("studentModel",studentModel);
-        ConsentController.this.startActivity(intent);
         finish();
     }
 
@@ -67,9 +64,13 @@ public class ConsentController extends AppCompatActivity {
     private void handleAccept(){
         String type = "consent";
         studentModel.updateModel(type,"1");
+        finish();
+    }
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
         Intent intent = new Intent(ConsentController.this, MainController.class);
         intent.putExtra("studentModel",studentModel);
         ConsentController.this.startActivity(intent);
-        finish();
     }
 }

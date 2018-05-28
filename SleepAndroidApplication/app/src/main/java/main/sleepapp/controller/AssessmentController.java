@@ -83,7 +83,7 @@ public class AssessmentController {
      */
     private void thresholdNotifier(List<SleepModel> sleepModelList) {
         Long diff = this.sleepModelList.diffSleepTime(sleepModelList);
-        if (diff < 4800000 * this.sleepModelList.nightsSlept) {
+        if (diff < 4800000L * this.sleepModelList.nightsSlept) {
             System.out.println(diff);
             alertStudent();
         }
