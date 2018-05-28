@@ -10,11 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.sql.Date;
-import java.sql.SQLOutput;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -22,7 +18,6 @@ import main.sleepapp.R;
 import main.sleepapp.model.MeetingModel;
 import main.sleepapp.model.SleepModel;
 import main.sleepapp.model.StudentModel;
-import main.sleepapp.model.UserModel;
 
 public class MainController extends AppCompatActivity{
 

@@ -23,7 +23,7 @@ public class MeetingController extends AppCompatActivity{
 
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         boolean hasMeeting = false;
         studentModel = getIntent().getParcelableExtra("studentModel");

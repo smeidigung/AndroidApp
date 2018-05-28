@@ -35,6 +35,7 @@ public class StudentModel implements Parcelable {
      */
     public StudentModel (Parcel in) {
         this.student_id = in.readString();
+        this.password = in.readString();
         this.consent = in.readString();
     }
 
@@ -143,6 +144,7 @@ public class StudentModel implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(student_id);
+        dest.writeString(password);
         dest.writeString(consent);
     }
 

@@ -18,6 +18,7 @@ import main.sleepapp.model.StudentModel;
 public class SleepModelList {
 
     public ArrayList<SleepModel> sleepModelList = new ArrayList<>();
+    public int nightsSlept;
 
     public SleepModelList(StudentModel studentModel) {
         String type = "assessment";
@@ -38,6 +39,7 @@ public class SleepModelList {
                 for (int i = 0; i < items.size(); i = i + 2) {
                     sleepModelList.add(new SleepModel(studentModel.getStudent_id(), items.get(i), items.get(i + 1)));
                 }
+                this.nightsSlept = items.size();
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
