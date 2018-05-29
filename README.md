@@ -1,2 +1,2 @@
-# SleepAndroidApp
+﻿# AndroidApp
 SøvnApplikation
