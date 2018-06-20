@@ -59,7 +59,7 @@ public class UserModel {
     }
 
     /**
-     * Håndterer hentning af data fra databasen en bestemt sundhedskoordinator.
+     * Håndterer hentning af data fra databasen for en bestemt sundhedskoordinator.
      * Modellen opdateres med et navn.
      */
     public void loadModel(String userID) {
