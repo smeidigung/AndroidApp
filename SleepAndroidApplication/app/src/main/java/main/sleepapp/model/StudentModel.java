@@ -30,7 +30,7 @@ public class StudentModel implements Parcelable {
 
     /**
      * The alternate constructor to be called if the model is to be created from a Parcel.
-     * I takes a Parcel as argument.
+     * It takes a Parcel as argument.
      * @param in    The parcel to be recreated from.
      */
     public StudentModel (Parcel in) {
