@@ -9,10 +9,16 @@ import android.support.v7.app.AppCompatActivity;
 import main.sleepapp.R;
 import main.sleepapp.model.StudentModel;
 
+/**
+ * Håndtere kommunikation mellem flere controllere.
+ */
 public class SleepController extends AppCompatActivity {
 
     private StudentModel studentModel;
 
+    /**
+     * Default metoden som kaldes når en activity oprettes.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +42,9 @@ public class SleepController extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * Håndtere en lukning af denne activity, ved at oprette en ny MainController.
+     */
     @Override
     public void onDestroy(){
         super.onDestroy();
@@ -44,10 +53,16 @@ public class SleepController extends AppCompatActivity {
         SleepController.this.startActivity(intent);
     }
 
+    /**
+     * Håndtere oprettelsen af en ny AssessmentController.
+     */
     public void handleGoToAssessment(Context context){
         new AssessmentController(studentModel,context);
     }
 
+    /**
+     * Sætter attributten studentModel af typen StudentModel til input argumentet studentModel
+     */
      public void setStudentModel(StudentModel studentModel) {
         this.studentModel = studentModel;
      }

@@ -19,6 +19,9 @@ import main.sleepapp.model.MeetingModel;
 import main.sleepapp.model.SleepModel;
 import main.sleepapp.model.StudentModel;
 
+/**
+ * Håndtere hovedmenuen og timeren.
+ */
 public class MainController extends AppCompatActivity{
 
     private StudentModel studentModel;
@@ -45,6 +48,16 @@ public class MainController extends AppCompatActivity{
     };
 
 
+    /**
+     * Default metoden som kaldes når en activity oprettes.
+     * Den sætter det viewet til at være loginView, og opretter de fire knapper som skal bruges til
+     * at navigere mellem appens funktionaliteter.
+     * Derefter oprettes en timer-knap som gør en af to ting, afhængigt af hvad knappens status er.
+     * Enten stoppes en timer, start- og stoptid gemmes sammen med brugerid'et i
+     * modellen studentModel, modellen opdatere databasen ved updateModel og en SleepController
+     * oprettes hvor 'assessment' køres.
+     * Ellers startes en timer, og teksten på knappen ændringers.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,6 +141,9 @@ public class MainController extends AppCompatActivity{
         }
     }
 
+    /**
+     * Håndtere skriftet til et nyt skærmbillede/avtivity.
+     */
     public void goToSleephabits () {
         Intent intent = new Intent(this, SleepController.class);
         intent.putExtra("type","sleephabits");
@@ -135,6 +151,9 @@ public class MainController extends AppCompatActivity{
         finish();
     }
 
+    /**
+     * Håndtere skriftet til et nyt skærmbillede/avtivity.
+     */
     public void goToConsent () {
         Intent intent = new Intent(this, ConsentController.class);
         intent.putExtra("studentModel",studentModel);
@@ -142,6 +161,9 @@ public class MainController extends AppCompatActivity{
         finish();
     }
 
+    /**
+     * Håndtere skriftet til et nyt skærmbillede/avtivity.
+     */
     public void goToPreviousSleep () {
         Intent intent = new Intent(this, SleepController.class);
         intent.putExtra("type","previoussleep");
@@ -150,6 +172,9 @@ public class MainController extends AppCompatActivity{
         finish();
     }
 
+    /**
+     * Håndtere skriftet til et nyt skærmbillede/avtivity.
+     */
     public void goToAcceptMeeting() {
         if(new MeetingModel().checkModel(studentModel)) {
             Intent intent = new Intent(this, MeetingController.class);
@@ -160,11 +185,11 @@ public class MainController extends AppCompatActivity{
         }
     }
 
+    /**
+     * Håndtere logud, ved at lukke den pågældende activity
+     */
     public void logout() {
         finish();
     }
-
-
-/*    Referer student model til databasecontroller*/
 
 }

@@ -14,9 +14,9 @@ import main.sleepapp.model.StudentModel;
 import main.sleepapp.util.SleepModelList;
 
 /**
- * AssessmentController takes a StudentModel and handles whether or not an alert should be given to the user.
- * It contains methods for, checking whether or not a user has given consent about sharing its user date and
- * producing a alertDialog.
+ * AssessmentController takes a StudentModel and handles whether or not an alert should be given to
+ * the user. It contains methods for, checking whether or not a user has given consent about
+ * sharing its user data and producing an alertDialog.
  */
 public class AssessmentController {
 

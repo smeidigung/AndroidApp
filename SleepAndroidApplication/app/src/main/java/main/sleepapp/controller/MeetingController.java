@@ -16,6 +16,10 @@ import main.sleepapp.model.MeetingModel;
 import main.sleepapp.model.StudentModel;
 import main.sleepapp.model.UserModel;
 
+/**
+ * Håndtere accept eller afvisning af et nyt møde, og giver overblik over allerede arrangerede
+ * møder.
+ */
 public class MeetingController extends AppCompatActivity{
 
     private MeetingModel meetingModel;
@@ -23,6 +27,11 @@ public class MeetingController extends AppCompatActivity{
     private StudentModel studentModel;
 
 
+    /**
+     * Default metoden som kaldes når en activity oprettes.
+     * Den sætter det viewet til at være et af to views; et view hvor der kan accepteres eller
+     * afvises et møde, ellers vises et overblik over eventulle møder.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,12 +63,20 @@ public class MeetingController extends AppCompatActivity{
 
 
     }
+
     @Override
     public void onPause(){
         super.onPause();
         finish();
     }
 
+    /**
+     * Håndere opsætningen af viewet meetingView, som skal give et overblik over eventuelle møder.
+     * Første oprettes modellerne meetingModel og userModel, hvor meetingModel hentes fra databasen.
+     * Så tjekkes om der er accepteret en møde fra SK, og hvis ikke sættes status til "venter på
+     * svar", ellers hentes userModel fra databasen med det på gældende userID, og denne
+     * information præsenteres for brugeren.
+     */
     private void showMeeting(){
         setContentView(R.layout.meetingview);
         meetingModel = new MeetingModel();
@@ -83,6 +100,11 @@ public class MeetingController extends AppCompatActivity{
 
     }
 
+    /**
+     * Håndtere et accept af mødet, ved at oprette et nyt møde.
+     * En ny MeetingModel oprettes, og udfyldes med oprettelsedato, og brugerID.
+     * Derefter kaldes metoden updateModel som sender indformationerne til databasen.
+     */
     private void handleAccept(){
         meetingModel = new MeetingModel();
         String type = "meeting";    
@@ -95,10 +117,16 @@ public class MeetingController extends AppCompatActivity{
         finish();
     }
 
+    /**
+     * Håndtere en afvisning af mødet, ved at afslutte den pågældende activity.
+     */
     private void handleReject(){
         finish();
     }
 
+    /**
+     * Håndtere en lukning af denne activity, ved at oprette en ny MainController.
+     */
     @Override
     public void onDestroy(){
         super.onDestroy();
@@ -107,14 +135,23 @@ public class MeetingController extends AppCompatActivity{
         MeetingController.this.startActivity(intent);
     }
 
+    /**
+     * Returnere attributten meetingModel af typen MeetingModel.
+     */
     public MeetingModel getMeetingModel() {
         return meetingModel;
     }
 
+    /**
+     * Returnere attributten userModel af typen UserModel.
+     */
     public UserModel getUserModel() {
         return userModel;
     }
 
+    /**
+     * Returnere attributten studentModel af typen StudentModel.
+     */
     public StudentModel getStudentModel() {
         return studentModel;
     }
