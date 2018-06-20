@@ -75,7 +75,11 @@ public class SleepModelList {
             }
         }
         for (int i = 0; i < sleepTime.size(); i++) {
-            diffTime.add((sleepTime.get(i).getTime() - awokeTime.get(i).getTime())*-1);
+            if(sleepTime.get(i).getTime() < awokeTime.get(i).getTime()) {
+                diffTime.add((sleepTime.get(i).getTime() - awokeTime.get(i).getTime()));
+            } else {
+                diffTime.add((awokeTime.get(i).getTime() - sleepTime.get(i).getTime()) + 86400000L);
+            }
             diff += diffTime.get(i);
         }
         return diff/diffTime.size();
