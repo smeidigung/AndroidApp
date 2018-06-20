@@ -50,7 +50,7 @@ public class MainController extends AppCompatActivity{
 
     /**
      * Default metoden som kaldes når en activity oprettes.
-     * Den sætter det viewet til at være loginView, og opretter de fire knapper som skal bruges til
+     * Den sætter det viewet til at være mainView, og opretter de fire knapper som skal bruges til
      * at navigere mellem appens funktionaliteter.
      * Derefter oprettes en timer-knap som gør en af to ting, afhængigt af hvad knappens status er.
      * Enten stoppes en timer, start- og stoptid gemmes sammen med brugerid'et i
@@ -64,7 +64,6 @@ public class MainController extends AppCompatActivity{
         setContentView(R.layout.mainview);
         studentModel = getIntent().getParcelableExtra("studentModel");
         this.context = this;
-
 
         GridLayout mainGrid = (GridLayout) findViewById(R.id.mainGrid);
         setSingleEvent(mainGrid);
@@ -80,7 +79,6 @@ public class MainController extends AppCompatActivity{
                 logout();
             }
         });
-
 
         Button toggleTimerButton = (Button) findViewById(R.id.button);
         toggleTimerButton.setText("Start Måling af Søvnlængde");
@@ -116,6 +114,11 @@ public class MainController extends AppCompatActivity{
             }
         });
     }
+
+    /**
+     * Gennemgår hvert element i mainGrid, opretter et cardview, og sætter en onClickListerner til
+     * hvert cardView.
+     */
     private void setSingleEvent(GridLayout mainGrid) {
         for (int i = 0; i< mainGrid.getChildCount();i++){
             CardView cardView = (CardView) mainGrid.getChildAt(i);
