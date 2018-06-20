@@ -12,6 +12,10 @@ import main.sleepapp.controller.ConsentController;
 import main.sleepapp.controller.DatabaseController;
 import main.sleepapp.controller.MeetingController;
 
+/**
+ * Denne model beskriver et møde, beskrevet ved attributterne mødetid, mødested, deltagende elev og
+ * deltagende SK.
+ */
 public class MeetingModel{
 
     private String meetingLocation;
@@ -19,22 +23,41 @@ public class MeetingModel{
     private String participatingStudent;
     private String participatingCoordinator;
 
+    /**
+     * Returnere attributten meetingLocation af typen String.
+     */
     public String getMeetingLocation() {
         return meetingLocation;
     }
 
+    /**
+     * Sætter attributten meetingLocation af typen String til input argumentet meetingLocation
+     */
     public void setMeetingLocation(String meetingLocation) {
         this.meetingLocation = meetingLocation;
     }
 
+    /**
+     * Returnere attributten meetingTime af typen Date.
+     */
     public Date getMeetingTime() {
         return meetingTime;
     }
 
+    /**
+     * Sætter attributten meetingTime af typen Date til input argumentet meetingTime
+     */
     public void setMeetingTime(Date meetingTime) {
         this.meetingTime = meetingTime;
     }
 
+    /**
+     * Tjekker om der findes et møde med en bestemt elev, og bruges når der skal undersøges om en
+     * elev allerede har et møde eller ej.
+     * Modellen opdateres med elevID'et, informationer om et møde med netop det elevID hentes fra
+     * databasen
+     * Hvis der findes et møde, returnerede med true - ellers returnerede med false.
+     */
     public boolean checkModel(StudentModel studentModel){
         setParticipatingStudent(studentModel.getStudent_id());
         String type = "loadMeeting";
@@ -61,6 +84,12 @@ public class MeetingModel{
 
          return false;
     }
+
+    /**
+     * Håndtere hentning af data fra databasen om et møde med en bestmet elev.
+     * Modellen opdateres med et elevID, indformationerne om et møde med netop dette elevID hentes
+     * fra databasen og udfyldes i modellen.
+     */
     public void loadModel(StudentModel studentModel){
         setParticipatingStudent(studentModel.getStudent_id());
         String type = "loadMeeting";
@@ -84,6 +113,9 @@ public class MeetingModel{
         }
     }
 
+    /**
+     * Håndtere opdateringen af data i databasen med data fra denne model.
+     */
     public void updateModel(String... params){
         String type = params[0];
         String currentDate = params[1];
@@ -96,14 +128,23 @@ public class MeetingModel{
         return participatingStudent;
     }
 
+    /**
+     * Sætter attributten meetingLocation af typen String til input argumentet meetingLocation
+     */
     public void setParticipatingStudent(String participatingStudent) {
         this.participatingStudent = participatingStudent;
     }
 
+    /**
+     * Returnere attributten meetingLocation af typen String.
+     */
     public String getParticipatingCoordinator() {
         return participatingCoordinator;
     }
 
+    /**
+     * Sætter attributten meetingLocation af typen String til input argumentet meetingLocation
+     */
     public void setParticipatingCoordinator(String participatingCoordinator) {
         this.participatingCoordinator = participatingCoordinator;
     }
