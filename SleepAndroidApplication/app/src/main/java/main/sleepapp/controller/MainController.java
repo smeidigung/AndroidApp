@@ -20,7 +20,7 @@ import main.sleepapp.model.SleepModel;
 import main.sleepapp.model.StudentModel;
 
 /**
- * Håndtere hovedmenuen og timeren.
+ * Håndterer hovedmenuen og timeren.
  */
 public class MainController extends AppCompatActivity{
 
@@ -49,14 +49,14 @@ public class MainController extends AppCompatActivity{
 
 
     /**
-     * Default metoden som kaldes når en activity oprettes.
-     * Den sætter det viewet til at være mainView, og opretter de fire knapper som skal bruges til
-     * at navigere mellem appens funktionaliteter.
-     * Derefter oprettes en timer-knap som gør en af to ting, afhængigt af hvad knappens status er.
-     * Enten stoppes en timer, start- og stoptid gemmes sammen med brugerid'et i
-     * modellen studentModel, modellen opdatere databasen ved updateModel og en SleepController
-     * oprettes hvor 'assessment' køres.
-     * Ellers startes en timer, og teksten på knappen ændringers.
+     * Dette er default metoden, som kaldes når en activity oprettes.
+     * Den sætter viewet til at være mainView og opretter de fire knapper, som skal bruges til
+     * at navigere mellem applikationens funktionaliteter.
+     * Derefter oprettes en timer-knap, som gør en af to ting afhængigt af, hvad knappens status er.
+     * Enten stoppes en timer, hvorfor start- og stoptid gemmes sammen med brugerid'et i
+     * modellen studentModel. Modellen opdaterer databasen ved updateModel, og en SleepController
+     * oprettes hvor 'assessment' køres. Anden mulighed er at starte en timer, og teksten
+     * på knappen ændres.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,7 +145,7 @@ public class MainController extends AppCompatActivity{
     }
 
     /**
-     * Håndtere skriftet til et nyt skærmbillede/avtivity.
+     * Håndterer skiftet til et nyt skærmbillede/avtivity.
      */
     public void goToSleephabits () {
         Intent intent = new Intent(this, SleepController.class);
