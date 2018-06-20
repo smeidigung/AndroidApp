@@ -16,7 +16,7 @@ import main.sleepapp.model.SleepModel;
 import main.sleepapp.model.StudentModel;
 
 /**
- * Denne model inderholder et array af SleepModels og beregner timer som eleven har sovet.
+ * Denne model inderholder et array af SleepModels og beregner antal timer, som eleven har sovet.
  */
 public class SleepModelList {
 
@@ -25,8 +25,8 @@ public class SleepModelList {
 
 
     /**
-     * Default constructor som kaldes når denne klasse oprettes.
-     * Håndtere hentning af data fra databasen, om gemmer det i et array af SleepModel's.
+     * Default constructor som kaldes, når denne klasse oprettes.
+     * Den håndterer hentning af data fra databasen, og gemmer det i et array af SleepModels.
      */
     public SleepModelList(StudentModel studentModel) {
         String type = "assessment";
@@ -57,7 +57,7 @@ public class SleepModelList {
     }
 
     /**
-     * Beregner differensen mellem sove- og opvågningstidspunktet.
+     * Beregner forskellen mellem sove- og opvågningstidspunktet.
      */
     public Long diffSleepTime(List<SleepModel> sleepModelList){
         ArrayList<Date> sleepTime = new ArrayList<>();
