@@ -62,8 +62,8 @@ public class StudentModel implements Parcelable {
     }
 
     /**
-     * Validates the login credentials, by calling a specific database operation, that looks for
-     * a user with the given usernam and password, then returns a String containing information
+     * Validates the login credentials by calling a specific database operation that looks for
+     * a user with the given username and password. Then it returns a String containing information
      * about the validity of the username and password combination.
      * @return  The String containing information about the validity of the username and password
      * combination.
@@ -82,9 +82,9 @@ public class StudentModel implements Parcelable {
     }
 
     /**
-     * Updates the StudentModel with new information, read from the argument params. Then calls a
-     * specific database operation to update the database. This specific method is used for register
-     * a new user.
+     * Updates the StudentModel with new information read from the argument params. Then it
+     * calls a specific database operation to update the database. This specific method is used
+     * to register a new user.
      * @param params    A String array containing userdata to be inserted into the StudentModel and
      *                  i the database.
      * @return          A string containing information whether the insertion into the database was
@@ -110,9 +110,9 @@ public class StudentModel implements Parcelable {
     }
 
     /**
-     * Updates the StudentModel with new information, read from the argument params. Then calls a
-     * specific database operation to update the database. This specific method is used for updating
-     * the consent status of the user.
+     * Updates the StudentModel with new information read from the argument params. Then it
+     * calls a specific database operation to update the database. This specific method is used
+     * for updating the consent status of the user.
      * @param type      The type of database operation to be used.
      * @param consent   A String containing a "1" for true or "0" for false.
      */
@@ -126,7 +126,7 @@ public class StudentModel implements Parcelable {
     }
 
     /**
-     *  This is used when creating a object from a Parcel, and is only used if a Parcelable class
+     *  This is used when creating a object from a Parcel and it is only used if a Parcelable class
      *  has any subclasses or children.
      * @return
      */
@@ -136,7 +136,7 @@ public class StudentModel implements Parcelable {
     }
 
     /**
-     * Is used when deconstructing the object into a Parcel, by reading the attributes and writing
+     * Is used when deconstructing the object into a Parcel by reading the attributes and writing
      * said information into a Parcel.
      * @param dest  The final Parcel containing the deconstructed object.
      * @param flags Is used to set if the final Parcel should be return or not.
@@ -169,7 +169,7 @@ public class StudentModel implements Parcelable {
         return consent;
     }
 
-    /** Set the string value of Consent.
+    /** Sets the string value of Consent.
      * @param consent   The string value to be set.
      */
     public void setConsent(String consent) {

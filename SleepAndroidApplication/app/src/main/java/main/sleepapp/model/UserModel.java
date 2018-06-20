@@ -7,7 +7,8 @@ import java.util.concurrent.ExecutionException;
 import main.sleepapp.controller.DatabaseController;
 
 /**
- * Denne model beskriver en SK, beskrevet ved attributterne navn, brugerID, og kodeord.
+ * Denne model beskriver en sundhedskoordinator beskrevet med attributterne navn,
+ * brugerID og kodeord.
  */
 public class UserModel {
 
@@ -16,49 +17,49 @@ public class UserModel {
     private String password;
 
     /**
-     * Returnere attributten name af typen String.
+     * Returnerer attributten name af typen String.
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Sætter attributten name af typen String til input argumentet name
+     * Sætter attributten name af typen String til inputargumentet name
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * Returnere attributten userID af typen String.
+     * Returnerer attributten userID af typen String.
      */
     public String getUserID() {
         return userID;
     }
 
     /**
-     * Sætter attributten userID af typen String til input argumentet userID
+     * Sætter attributten userID af typen String til inputargumentet userID
      */
     public void setUserID(String userID) {
         this.userID = userID;
     }
 
     /**
-     * Returnere attributten password af typen String.
+     * Returnerer attributten password af typen String.
      */
     public String getPassword() {
         return password;
     }
 
     /**
-     * Sætter attributten password af typen String til input argumentet password
+     * Sætter attributten password af typen String til inputargumentet password
      */
     public void setPassword(String password) {
         this.password = password;
     }
 
     /**
-     * Håndtere hentning af data fra databasen en bestemt SK.
+     * Håndterer hentning af data fra databasen en bestemt sundhedskoordinator.
      * Modellen opdateres med et navn.
      */
     public void loadModel(String userID) {

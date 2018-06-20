@@ -14,7 +14,7 @@ import main.sleepapp.controller.MeetingController;
 
 /**
  * Denne model beskriver et møde, beskrevet ved attributterne mødetid, mødested, deltagende elev og
- * deltagende SK.
+ * deltagende sundhedskoordinator.
  */
 public class MeetingModel{
 
@@ -24,39 +24,39 @@ public class MeetingModel{
     private String participatingCoordinator;
 
     /**
-     * Returnere attributten meetingLocation af typen String.
+     * Returnerer attributten meetingLocation af typen String.
      */
     public String getMeetingLocation() {
         return meetingLocation;
     }
 
     /**
-     * Sætter attributten meetingLocation af typen String til input argumentet meetingLocation
+     * Sætter attributten meetingLocation af typen String til inputargumentet meetingLocation
      */
     public void setMeetingLocation(String meetingLocation) {
         this.meetingLocation = meetingLocation;
     }
 
     /**
-     * Returnere attributten meetingTime af typen Date.
+     * Returnerer attributten meetingTime af typen Date.
      */
     public Date getMeetingTime() {
         return meetingTime;
     }
 
     /**
-     * Sætter attributten meetingTime af typen Date til input argumentet meetingTime
+     * Sætter attributten meetingTime af typen Date til inputargumentet meetingTime
      */
     public void setMeetingTime(Date meetingTime) {
         this.meetingTime = meetingTime;
     }
 
     /**
-     * Tjekker om der findes et møde med en bestemt elev, og bruges når der skal undersøges om en
-     * elev allerede har et møde eller ej.
-     * Modellen opdateres med elevID'et, informationer om et møde med netop det elevID hentes fra
-     * databasen
-     * Hvis der findes et møde, returnerede med true - ellers returnerede med false.
+     * Metoden tjekker, om der findes et møde med en bestemt elev, og bruges når det skal
+     * undersøges, om en elev allerede har et møde eller ej.
+     * Modellen opdateres med elevID'et, informationer om et møde med netop det elevID, hvilket
+     * hentes fra databasen.
+     * Hvis der findes et møde, returneres med true - ellers returneres med false.
      */
     public boolean checkModel(StudentModel studentModel){
         setParticipatingStudent(studentModel.getStudent_id());
@@ -86,9 +86,9 @@ public class MeetingModel{
     }
 
     /**
-     * Håndtere hentning af data fra databasen om et møde med en bestmet elev.
-     * Modellen opdateres med et elevID, indformationerne om et møde med netop dette elevID hentes
-     * fra databasen og udfyldes i modellen.
+     * Håndterer hentning af data fra databasen om et møde med en bestemt elev.
+     * Modellen opdateres med et elevID, informationerne om et møde med netop dette elevID,
+     * hvilke hentes fra databasen og udfyldes i modellen.
      */
     public void loadModel(StudentModel studentModel){
         setParticipatingStudent(studentModel.getStudent_id());
@@ -114,7 +114,7 @@ public class MeetingModel{
     }
 
     /**
-     * Håndtere opdateringen af data i databasen med data fra denne model.
+     * Håndterer opdateringen af data i databasen med data fra denne model.
      */
     public void updateModel(String... params){
         String type = params[0];
@@ -129,21 +129,21 @@ public class MeetingModel{
     }
 
     /**
-     * Sætter attributten meetingLocation af typen String til input argumentet meetingLocation
+     * Sætter attributten meetingLocation af typen String til inputargumentet meetingLocation
      */
     public void setParticipatingStudent(String participatingStudent) {
         this.participatingStudent = participatingStudent;
     }
 
     /**
-     * Returnere attributten meetingLocation af typen String.
+     * Returnerer attributten meetingLocation af typen String.
      */
     public String getParticipatingCoordinator() {
         return participatingCoordinator;
     }
 
     /**
-     * Sætter attributten meetingLocation af typen String til input argumentet meetingLocation
+     * Sætter attributten meetingLocation af typen String til inputargumentet meetingLocation
      */
     public void setParticipatingCoordinator(String participatingCoordinator) {
         this.participatingCoordinator = participatingCoordinator;
