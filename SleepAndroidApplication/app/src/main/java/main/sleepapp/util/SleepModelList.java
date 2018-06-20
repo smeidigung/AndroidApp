@@ -15,11 +15,19 @@ import main.sleepapp.controller.MainController;
 import main.sleepapp.model.SleepModel;
 import main.sleepapp.model.StudentModel;
 
+/**
+ * Denne model inderholder et array af SleepModels og beregner timer som eleven har sovet.
+ */
 public class SleepModelList {
 
     public ArrayList<SleepModel> sleepModelList = new ArrayList<>();
     public int nightsSlept;
 
+
+    /**
+     * Default constructor som kaldes når denne klasse oprettes.
+     * Håndtere hentning af data fra databasen, om gemmer det i et array af SleepModel's.
+     */
     public SleepModelList(StudentModel studentModel) {
         String type = "assessment";
         SimpleDateFormat sdfDate = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -48,6 +56,9 @@ public class SleepModelList {
         }
     }
 
+    /**
+     * Beregner differensen mellem sove- og opvågningstidspunktet.
+     */
     public Long diffSleepTime(List<SleepModel> sleepModelList){
         ArrayList<Date> sleepTime = new ArrayList<>();
         ArrayList<Date> awokeTime = new ArrayList<>();
@@ -60,7 +71,7 @@ public class SleepModelList {
                 sleepTime.add(sdfDate.parse(sleepModel.getSleep_time()));
                 awokeTime.add(sdfDate.parse(sleepModel.getAwoke_time()));
             } catch (ParseException e) {
-                System.out.println("DATES IS WRONG");
+
             }
         }
         for (int i = 0; i < sleepTime.size(); i++) {
