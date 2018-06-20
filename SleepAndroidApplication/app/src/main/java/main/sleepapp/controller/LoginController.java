@@ -16,7 +16,7 @@ import main.sleepapp.R;
 import main.sleepapp.model.StudentModel;
 
 /**
- * Håndtere login og registrering af eleven.
+ * Håndterer login og registrering af eleven.
  */
 public class LoginController extends AppCompatActivity {
 
@@ -24,8 +24,8 @@ public class LoginController extends AppCompatActivity {
     private StudentModel studentModel;
 
     /**
-     * Default metoden som kaldes når en activity oprettes.
-     * Den sætter det viewet til at være loginView, og opretter de to knapper som skal bruges.
+     * Det er default-metoden, som kaldes når en activity oprettes.
+     * Den sætter viewet til at være loginView og opretter de to knapper: login og registrer.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +53,11 @@ public class LoginController extends AppCompatActivity {
     }
 
     /**
-     * Håndtere en registrering af en elev, og aktiveres af knappen registrer.
-     * Første hentes den indskrevende navn og kodeord, og navn inddeles i fornavn og efternavn.
-     * Så registeres brugeren med oplysningerne med metoden updateModel, i klassen StudentModel.
-     * Afslutningvis oprettes en pop-up besked med det autogenererede brugernavn og præsenteres for
-     * brugeren, og brugeres sendes til login-siden.
+     * Håndterer en registrering af en elev, og den aktiveres af knappen registrer.
+     * Først hentes det indskrevet navn og kodeord, og navn inddeles i fornavn og efternavn.
+     * Så registeres brugeren med oplysningerne via metoden updateModel i klassen StudentModel.
+     * Afslutningvis oprettes en pop-up besked med det autogenererede brugernavn, og det
+     * præsenteres for brugeren. Brugeren sendes til login-siden.
      */
     private void handleRegister() {
         String password = rPassword.getText().toString();
@@ -91,10 +91,10 @@ public class LoginController extends AppCompatActivity {
     }
 
     /**
-     * Håndtere et login og er aktiveret af knappen login.
-     * Først hentes det indskrevende brugernavn og kodeord, og validiteten af kombinationen tjekkes
-     * ved metoden validateID af klassen StudentModel. Hvis brugernavnet godkendes, oprettes en ny
-     * MainController og den nye StudentModel gives videre.
+     * Denne metode håndterer et login, og den aktiveres af knappen login.
+     * Først hentes det indskrevet brugernavn og kodeord, og validiteten af kombinationen tjekkes
+     * via metoden validateID af klassen StudentModel. Hvis brugernavnet godkendes, oprettes en ny
+     * MainController, og den nye StudentModel gives videre.
      */
     private void handleLogin(){
         studentModel.setStudent_id(mUserID.getText().toString());
@@ -111,8 +111,8 @@ public class LoginController extends AppCompatActivity {
     }
 
     /**
-     * Validere kombinationen af input argumentet studentID og studentPassword, ved at kalde
-     * Studentmodel's metoden validateID, og returnere svaret herfra.
+     * Validerer kombinationen af inputargumentet studentID og studentPassword ved at kalde
+     * metoden validateID fra studentModel, og svaret herfra returneres.
      */
     private String validateID(String studentID, String studentPassword){
         String string = studentModel.validateID();
@@ -120,10 +120,9 @@ public class LoginController extends AppCompatActivity {
     }
 
     /**
-     * Håndtere skiftet af view, fra login til register, og kaldes når der trykkes på knappen
-     * register.
-     * Sætter viewet til registerView, tekstfelterne til indskrivning af navn og koderord oprettes,
-     * og en knap til registereing oprettes.
+     * Håndterer skiftet af view fra login til register, og den kaldes, når der trykkes på knappen
+     * register. Den sætter viewet til registerView, og tekstfelterne til indskrivning af navn
+     * og koderord oprettes. En knap til registereing oprettes ligeledes.
      */
     private void handleGoToRegister() {
         setContentView(R.layout.registerview);
@@ -139,7 +138,7 @@ public class LoginController extends AppCompatActivity {
     }
 
     /**
-     * Opretter en ny login activity.
+     * Opretter en ny login activity og går til det tilhørende view.
      */
     private void handleGoToLogin () {
         Intent Intent = new Intent(this, LoginController.class);
