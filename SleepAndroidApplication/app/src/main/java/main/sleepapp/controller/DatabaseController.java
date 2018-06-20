@@ -390,8 +390,7 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
     }
 
     /**
-     * Fuck knows, what this does. TODO: !!! CRITICAL - SHOULD NOT BE THIS TEXT - CRITICAL
-     * @param values    Ahh, yes - values.
+     * Denne metode kaldes hver gang der sker en opdatering i doInBackground().
      */
     @Override
     protected void onProgressUpdate(Void... values) {
