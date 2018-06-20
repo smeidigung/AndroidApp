@@ -145,7 +145,7 @@ public class MainController extends AppCompatActivity{
     }
 
     /**
-     * Håndterer skiftet til et nyt skærmbillede/avtivity.
+     * Håndterer skiftet til en ny activity med tilhørende view.
      */
     public void goToSleephabits () {
         Intent intent = new Intent(this, SleepController.class);
@@ -155,7 +155,7 @@ public class MainController extends AppCompatActivity{
     }
 
     /**
-     * Håndtere skriftet til et nyt skærmbillede/avtivity.
+     * Håndterer skiftet til en ny activity med tilhørende view.
      */
     public void goToConsent () {
         Intent intent = new Intent(this, ConsentController.class);
@@ -165,7 +165,7 @@ public class MainController extends AppCompatActivity{
     }
 
     /**
-     * Håndtere skriftet til et nyt skærmbillede/avtivity.
+     * Håndterer skiftet til en ny activity med tilhørende view.
      */
     public void goToPreviousSleep () {
         Intent intent = new Intent(this, SleepController.class);
@@ -176,7 +176,7 @@ public class MainController extends AppCompatActivity{
     }
 
     /**
-     * Håndtere skriftet til et nyt skærmbillede/avtivity.
+     * Håndterer skiftet til en ny activity med tilhørende view.
      */
     public void goToAcceptMeeting() {
         if(new MeetingModel().checkModel(studentModel)) {
@@ -189,7 +189,7 @@ public class MainController extends AppCompatActivity{
     }
 
     /**
-     * Håndtere logud, ved at lukke den pågældende activity
+     * Håndterer logud ved at lukke den pågældende activity med metoden finish.
      */
     public void logout() {
         finish();
