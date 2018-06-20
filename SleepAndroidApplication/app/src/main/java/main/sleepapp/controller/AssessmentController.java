@@ -15,7 +15,7 @@ import main.sleepapp.util.SleepModelList;
 
 /**
  * AssessmentController takes a StudentModel and handles whether or not an alert should be given to
- * the user. It contains methods for, checking whether or not a user has given consent about
+ * the user. It contains methods for checking whether or not a user has given consent about
  * sharing its user data and producing an alertDialog.
  */
 public class AssessmentController {
@@ -27,9 +27,8 @@ public class AssessmentController {
 
     /**
      * This is the constructor for the class, and takes the input arguments StudentModel and a
-     * Context.
-     * Using the StudentModel, it calls for a "has given consent"-check, and uses Context to inform
-     * where to display the alertDialog.
+     * Context. Using the StudentModel, it calls for a "has given consent"-check,
+     * and uses Context to inform where to display the alertDialog.
      *
      * @param studentModel The StudentModel to be used for when checking for consent and what data
      *                     to use.
@@ -90,9 +89,9 @@ public class AssessmentController {
     }
 
     /**
-     * Creates a AlertDialog if the user hasn't already arranged a meeting with a HC.
-     * The user is then display with a choice of "Yes, arrange a meeting, please." or "No, thanks"
-     * The positive answer creates a meetingController activity.
+     * Creates a AlertDialog if the user hasn't already arranged a meeting with a health
+     * coordinator. The user is then displayed with a choice of "Yes, arrange a meeting, please."
+     * or "No, thanks". The positive answer creates a meetingController activity.
      * The negative answer simply closes the dialog, and the user is asked again after next sleep.
      */
     private void alertStudent() {

@@ -22,7 +22,7 @@ import main.sleepapp.model.StudentModel;
 /**
  * DatabaseController is used to communicate with a webservice, and is an extension of the
  * superclass ASyncClass. This is used to keep the main thread free of the task of waiting for a
- * webservice to answer. It override the methods doInBackground, onPreExecute, and onPostExecute.
+ * webservice to answer. It overrides the methods doInBackground, onPreExecute, and onPostExecute.
  */
 public class DatabaseController extends AsyncTask<String, Void, String> {
 
@@ -121,7 +121,8 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
                 e.printStackTrace();
             }
 
-        // Denne type operation bliver udført, når brugeren stopper deres timer, dvs. når en elevn står op.
+        // Denne type operation bliver udført, når brugeren stopper deres timer,
+            // dvs. når en eleven står op.
         } else if (type.equals("timer")) {
             try {
                 String student_id = params[1];
@@ -159,7 +160,8 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
                 e.printStackTrace();
             }
 
-        // Denne type operation bliver udført, når en elev opdateres deres ønske om at give samtykke.
+        // Denne type operation bliver udført, når en elev opdateresr deres ønske om
+            // at give samtykke.
         } else if (type.equals("consent")) {
             try {
                 String student_id = params[1];
@@ -195,7 +197,8 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
                 e.printStackTrace();
             }
 
-        // Denne type operation bliver udført, når en vurdering af elevenssøvn skal foretages, og de seneste 7 dages data ønskes.
+        // Denne type operation bliver udført, når en vurdering af elevens søvn skal foretages,
+            // og de seneste 7 dages data ønskes.
         } else if (type.equals("assessment")) {
             try {
                 String student_id = params[1];
@@ -269,7 +272,7 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
                 e.printStackTrace();
             }
 
-        // Denne type operation bliver udført, når informationer om en møde ønskes.
+        // Denne type operation bliver udført, når informationer om et møde ønskes.
         } else if (type.equals("loadMeeting")) {
             try {
                 String student_id = params[1];
@@ -302,7 +305,7 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
                 e.printStackTrace();
             }
 
-        // Denne type operation bliver udført, når der ønskes informationer om en elevs samtykke.
+        // Denne type operation bliver udført, når der ønskes informationer om et elevs samtykke.
         } else if (type.equals("getConsent")) {
             try {
                 String student_id = params[1];
@@ -390,7 +393,7 @@ public class DatabaseController extends AsyncTask<String, Void, String> {
     }
 
     /**
-     * Denne metode kaldes hver gang der sker en opdatering i doInBackground().
+     * Denne metode kaldes hver gang, der sker en opdatering i doInBackground().
      */
     @Override
     protected void onProgressUpdate(Void... values) {

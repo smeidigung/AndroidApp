@@ -48,8 +48,8 @@ public class ConsentController extends AppCompatActivity {
     }
 
     /**
-     * Is called when the user clicks the "REJECT" button, and sets the consent value in the
-     * database to 0. Then calls the MainController activity.
+     * Is called when the user clicks the "reject" button, and sets the consent value in the
+     * database to 0. Then it calls the MainController activity.
      */
     private void handleReject() {
         String type = "consent";
@@ -58,8 +58,8 @@ public class ConsentController extends AppCompatActivity {
     }
 
     /**
-     * Is called when the user clicks the "ACCEPT" button, and sets the consent value in the
-     * database to 1. Then calls the MainController activity.
+     * Is called when the user clicks the "accept" button, and sets the consent value in the
+     * database to 1. Then it calls the MainController activity.
      */
     private void handleAccept(){
         String type = "consent";

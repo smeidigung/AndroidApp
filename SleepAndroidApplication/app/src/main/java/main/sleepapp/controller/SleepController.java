@@ -10,14 +10,14 @@ import main.sleepapp.R;
 import main.sleepapp.model.StudentModel;
 
 /**
- * Håndtere kommunikation mellem flere controllere.
+ * Håndterer kommunikation mellem flere controllere.
  */
 public class SleepController extends AppCompatActivity {
 
     private StudentModel studentModel;
 
     /**
-     * Default metoden som kaldes når en activity oprettes.
+     * Default metoden som kaldes, når en activity oprettes.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class SleepController extends AppCompatActivity {
     }
 
     /**
-     * Håndtere en lukning af denne activity, ved at oprette en ny MainController.
+     * Håndterer lukning af denne activity ved at oprette en ny instans af MainController.
      */
     @Override
     public void onDestroy(){
@@ -54,14 +54,14 @@ public class SleepController extends AppCompatActivity {
     }
 
     /**
-     * Håndtere oprettelsen af en ny AssessmentController.
+     * Håndterer oprettelsen af en ny instans af AssessmentController.
      */
     public void handleGoToAssessment(Context context){
         new AssessmentController(studentModel,context);
     }
 
     /**
-     * Sætter attributten studentModel af typen StudentModel til input argumentet studentModel
+     * Sætter attributten studentModel af typen StudentModel til inputargumentet studentModel.
      */
      public void setStudentModel(StudentModel studentModel) {
         this.studentModel = studentModel;
